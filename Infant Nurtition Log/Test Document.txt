@@ -1,0 +1,5 @@
+Team, once you are able to, add your name to the list below and then commit and push 
+to the repository. 
+
+If you have figured this much out, sign here:
+- Ryan Coffey
