@@ -3,3 +3,4 @@ to the repository.
 
 If you have figured this much out, sign here:
 - Ryan Coffey
+- John Norman
