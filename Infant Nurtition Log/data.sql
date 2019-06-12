@@ -5,31 +5,33 @@ CREATE DATABASE data;
 USE data;
 
 CREATE TABLE Person (
-	Id INTEGER NOT NULL,
+	Id INTEGER(9) NOT NULL,
 	FirstName VARCHAR(255),
 	LastName VARCHAR(255) NOT NULL,
 	Gender CHAR,
 	PRIMARY KEY(Id)
 );
 
+CREATE TABLE Event(
+	EventNumber INTEGER NOT NULL,
+	TypeCode INTEGER NOT NULL,
+	PRIMARY KEY(EventNumber)
+);
+
 CREATE TABLE PatientEvent(
 	Id INTEGER NOT NULL,
 	EventNumber INTEGER,
-	DateAndTime DATETIME
-	
+	DateAndTime DATETIME,
+	PRIMARY KEY(EventNumber)
 );
 
 CREATE TABLE Patient(
 	Id INTEGER,
 	Weight FLOAT,
-	DOB DATE
-	
+	DOB DATE 	
 );
 
-CREATE TABLE Event(
-	EventNumber INTEGER,
-	TypeCode INTEGER
-);
+
 
 CREATE TABLE Feeding(
 	TypeCode INTEGER,
@@ -48,4 +50,7 @@ CREATE TABLE Changing(
 	stool FLOAT
 );
 
-DESC PatientEvent;
+
+ALTER TABLE patient
+ADD FOREIGN KEY (Id) REFERENCES Person (Id);
+
