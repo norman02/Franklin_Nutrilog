@@ -21,9 +21,8 @@ CREATE TABLE Event(
 CREATE TABLE PatientEvent(
 	Id INTEGER NOT NULL,
 	EventNumber INTEGER,
-	DateAndTime DATETIME,
-	PRIMARY KEY(EventNumber)
-);
+	DateAndTime DATETIME
+	);
 
 CREATE TABLE Patient(
 	Id INTEGER,
@@ -53,4 +52,12 @@ CREATE TABLE Changing(
 
 ALTER TABLE patient
 ADD FOREIGN KEY (Id) REFERENCES Person (Id);
+
+ALTER TABLE PatientEvent
+ADD FOREIGN KEY (id) REFERENCES patient (Id);
+
+ALTER TABLE PatientEvent
+ADD FOREIGN KEY (EventNumber) REFERENCES Event (EventNumber);
+
+DESC patientevent;
 
