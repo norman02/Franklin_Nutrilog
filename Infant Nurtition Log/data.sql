@@ -59,5 +59,5 @@ ADD FOREIGN KEY (id) REFERENCES patient (Id);
 ALTER TABLE PatientEvent
 ADD FOREIGN KEY (EventNumber) REFERENCES Event (EventNumber);
 
-DESC patientevent;
+
 
