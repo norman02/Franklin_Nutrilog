@@ -21,9 +21,9 @@ CREATE TABLE Person (
 
 
 CREATE TABLE Event(
-EventCode INTEGER NOT NULL,
+	EventCode INTEGER NOT NULL,
 	EventNumber INTEGER NOT NULL,
-	PRIMARY KEY(EventNumber)
+	PRIMARY KEY(EventCode)
 );
 
 CREATE TABLE PatientEvent(	
@@ -60,5 +60,8 @@ ADD FOREIGN KEY (id) REFERENCES Person (id);
 
 ALTER TABLE PatientEvent
 ADD FOREIGN KEY (id) REFERENCES Patient (Id);
+
+ALTER TABLE PatientEvent
+ADD FOREIGN KEY (EventCode) REFERENCES Event (EventCode);
 
 
