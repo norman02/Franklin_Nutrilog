@@ -1,0 +1,15 @@
+Author - John Norman (norman02@email.franklin.edu)
+
+Database Files
+---------------
+DB_init_Commands.SQL
+Nutrilog Database ERD.PDF
+
+DB_inti_Commands
+-----------------
+Contains a sequence of MySQL commands that will delete and create the Nutrilog database.
+
+Nutrilog Database ERD.PDF
+-------------------------
+The entity-relationship diagram for the Nutrilog database. 
+
