@@ -21,15 +21,14 @@ CREATE TABLE Person (
 
 
 CREATE TABLE Event(
-	EventCode INTEGER NOT NULL,
 	EventNumber INTEGER NOT NULL,
-	PRIMARY KEY(EventCode)
+	DateAndTime DATETIME,
+	PRIMARY KEY(EventNumber)
 );
 
 CREATE TABLE PatientEvent(	
 	Id INTEGER NOT NULL,	
-	EventCode INTEGER,	
-	DateAndTime DATETIME	
+	EventCode INTEGER	
 );
 
 CREATE TABLE Patient(	
@@ -55,6 +54,11 @@ CREATE TABLE Changing(
 	stool VARCHAR(255)
 );
 
+CREATE TABLE EventType(
+	EventNumber INTEGER,
+	EventCode INTEGER
+);
+
 ALTER TABLE Patient
 ADD FOREIGN KEY (id) REFERENCES Person (id);
 
@@ -64,4 +68,6 @@ ADD FOREIGN KEY (id) REFERENCES Patient (Id);
 ALTER TABLE PatientEvent
 ADD FOREIGN KEY (EventCode) REFERENCES Event (EventCode);
 
+ALTER TABLE EventType
+ADD FOREIGN KEY (EventNumber) REFERENCES Event (EventNumber);
 
