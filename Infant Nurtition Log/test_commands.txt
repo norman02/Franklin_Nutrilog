@@ -1,0 +1,7 @@
+
+
+#Log an Event - feeding/ changing/ weighing
+
+#Register a baby
+
+#Search for a baby - By last name or By regitraition number

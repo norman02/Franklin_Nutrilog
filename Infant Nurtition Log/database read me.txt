@@ -4,6 +4,7 @@ Database Files
 ---------------
 DB_init_Commands.SQL
 Nutrilog Database ERD.PDF
+test_commands
 
 DB_inti_Commands
 -----------------
@@ -12,4 +13,8 @@ Contains a sequence of MySQL commands that will delete and create the Nutrilog d
 Nutrilog Database ERD.PDF
 -------------------------
 The entity-relationship diagram for the Nutrilog database. 
+
+test_commands
+--------------
+A set of MySQL commands to test core functionality of the database
 
