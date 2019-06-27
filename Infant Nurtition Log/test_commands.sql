@@ -6,6 +6,17 @@ VALUES (1, "John", "Doe", 'M');
 INSERT INTO Patient (id, Weight, DOB)
 VALUES (1, 10, NULL);
 
+INSERT INTO Person (id, FirstName, LastName, Gender)
+VALUES (2, "Jane", "Doe", 'F');
+
+INSERT INTO Patient (id, Weight, DOB)
+VALUES (2, 10, NULL);
+
+INSERT INTO Person (id, FirstName, LastName, Gender)
+VALUES (3, "Jessica", "Jones", 'F');
+
+INSERT INTO Patient (id, Weight, DOB)
+VALUES (3, 10, NULL);
 
 SELECT Person.id, Person.FirstName, Person.LastName, Person.Gender, Patient.Weight, Patient.DOB
 FROM Person
