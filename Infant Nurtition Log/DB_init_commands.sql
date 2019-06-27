@@ -28,7 +28,7 @@ CREATE TABLE Event(
 
 CREATE TABLE PatientEvent(	
 	Id INTEGER NOT NULL,	
-	EventCode INTEGER	
+	EventNumber INTEGER	
 );
 
 CREATE TABLE Patient(	
@@ -38,25 +38,25 @@ CREATE TABLE Patient(
 );
 
 CREATE TABLE Feeding(
-	EventCode INTEGER,
+	EventName VARCHAR(255),
 	Aumount FLOAT,
 	units FLOAT
 );
 
 CREATE TABLE Weighing(
-	EventCode INTEGER,
+	EventName VARCHAR(255),
 	Weight FLOAT
 );
 
 CREATE TABLE Changing(
-	EventCode INTEGER,
+	EventName VARCHAR(255),
 	urine VARCHAR(255),
 	stool VARCHAR(255)
 );
 
 CREATE TABLE EventType(
 	EventNumber INTEGER,
-	EventCode INTEGER
+	EventName VARCHAR(255)
 );
 
 ALTER TABLE Patient
@@ -66,7 +66,7 @@ ALTER TABLE PatientEvent
 ADD FOREIGN KEY (id) REFERENCES Patient (Id);
 
 ALTER TABLE PatientEvent
-ADD FOREIGN KEY (EventCode) REFERENCES Event (EventCode);
+ADD FOREIGN KEY (EventNumber) REFERENCES Event (EventNumber);
 
 ALTER TABLE EventType
 ADD FOREIGN KEY (EventNumber) REFERENCES Event (EventNumber);
