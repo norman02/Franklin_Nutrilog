@@ -17,8 +17,8 @@ FROM Person
 LEFT JOIN Patient ON Person.id=Patient.id
 WHERE Person.id = 1;
 
-#Log an Event - feeding/ changing/ weighing
+#Log an Event - feeding
 
-#Log an Event - feeding/ changing/ weighing
+#Log an Event - changing
 
-#Log an Event - feeding/ changing/ weighing
+#Log an Event - weighing

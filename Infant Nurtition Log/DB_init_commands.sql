@@ -50,8 +50,8 @@ CREATE TABLE Weighing(
 
 CREATE TABLE Changing(
 	EventName VARCHAR(255),
-	urine VARCHAR(255),
-	stool VARCHAR(255)
+	urine BOOLEAN,
+	stool BOOLEAN
 );
 
 CREATE TABLE EventType(
