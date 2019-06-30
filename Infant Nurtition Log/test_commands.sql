@@ -3,33 +3,29 @@
 INSERT INTO Person (id, FirstName, LastName, Gender)
 VALUES (1, "John", "Doe", 'M');
 
-INSERT INTO Patient (id, Weight, DOB)
-VALUES (1, 10, NULL);
-
 INSERT INTO Person (id, FirstName, LastName, Gender)
 VALUES (2, "Jane", "Doe", 'F');
-
-INSERT INTO Patient (id, Weight, DOB)
-VALUES (2, 10, NULL);
 
 INSERT INTO Person (id, FirstName, LastName, Gender)
 VALUES (3, "Jessica", "Jones", 'F');
 
-INSERT INTO Patient (id, Weight, DOB)
-VALUES (3, 10, NULL);
+INSERT INTO Person (id, FirstName, LastName, Gender)
+VALUES (4, "Luke", "Cage", 'M');
 
-SELECT Person.id, Person.FirstName, Person.LastName, Person.Gender, Patient.Weight, Patient.DOB
-FROM Person
-LEFT JOIN Patient ON Person.id=Patient.id
-WHERE LastName = 'Doe';
+SELECT * FROM Person;
 
-SELECT Person.id, Person.FirstName, Person.LastName, Person.Gender, Patient.Weight, Patient.DOB
-FROM Person
-LEFT JOIN Patient ON Person.id=Patient.id
-WHERE Person.id = 1;
+INSERT INTO Event(id, EventType, PersonId, Units)
+VALUES (1, 'Feeding', 1, 4);
 
-#Log an Event - feeding
+INSERT INTO Event(id, EventType, PersonId, Urine, Stool)
+VALUES (2, 'Changing', 2, True, false);
 
-#Log an Event - changing
+INSERT INTO Event(id, EventType, PersonId, Weight)
+VALUES (3, 'Wheighing', 3, 50);
 
-#Log an Event - weighing
+SELECT 
+	Person.*, Event.*
+FROM
+	Event
+	LEFT JOIN
+	Person ON Person.id = Event.PersonId;

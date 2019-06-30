@@ -15,9 +15,10 @@ CREATE TABLE Person(
 
 CREATE TABLE Event(
 	Id INTEGER NOT NULL,
-	EventDate DATE NOT NULL,
+	EventDate DATE,
 	EventType VARCHAR(255) NOT NULL,
 	PersonId INTEGER NOT NULL,
+	Units INTEGER,
 	Weight FLOAT,
 	Urine BOOLEAN,
 	Stool BOOLEAN,
