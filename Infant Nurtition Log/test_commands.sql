@@ -29,3 +29,10 @@ FROM
 	Event
 	LEFT JOIN
 	Person ON Person.id = Event.PersonId;
+	
+SELECT * FROM person
+WHERE Person.id =1;
+
+SELECT * FROM person
+WHERE LastName = 'Cage';
+	
