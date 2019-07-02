@@ -1,67 +1,39 @@
-DROP DATABASE data;
+DROP DATABASE NutrilogDB;
 
+CREATE DATABASE NutrilogDB;
 
+USE NutrilogDB;
 
-CREATE DATABASE data;
-
-
-
-USE data;
-
-
-
-CREATE TABLE Person (
-	Id INTEGER(9) NOT NULL,
+CREATE TABLE Person(
+	Id INTEGER NOT NULL,
 	FirstName VARCHAR(255),
 	LastName VARCHAR(255) NOT NULL,
 	Gender CHAR,
-	PRIMARY KEY(Id)
+	DOB DATETIME,
+	PRIMARY KEY(Id) 
 );
-
-
 
 CREATE TABLE Event(
-	EventCode INTEGER NOT NULL,
-	EventNumber INTEGER NOT NULL,
-	PRIMARY KEY(EventCode)
+	Id INTEGER NOT NULL,
+	EventDate DATE,
+	EventType VARCHAR(255) NOT NULL,
+	PersonId INTEGER NOT NULL,
+	Units INTEGER,
+	Weight FLOAT,
+	Urine BOOLEAN,
+	Stool BOOLEAN,
+	PRIMARY KEY (Id),
+	FOREIGN KEY (PersonId) REFERENCES Person (Id)
 );
 
-CREATE TABLE PatientEvent(	
-	Id INTEGER NOT NULL,	
-	EventCode INTEGER,	
-	DateAndTime DATETIME	
+CREATE TABLE EventType(
+	Id INTEGER NOT NULL,
+	EventType VARCHAR(255) NOT NULL,
+	FOREIGN KEY (Id) REFERENCES Event (Id)
 );
 
-CREATE TABLE Patient(	
-	Id INTEGER,	
-	Weight FLOAT,	
-	DOB DATE 	
-);
 
-CREATE TABLE Feeding(
-	EventCode INTEGER,
-	Aumount FLOAT,
-	units FLOAT
-);
 
-CREATE TABLE Weighing(
-	EventCode INTEGER,
-	Weight FLOAT
-);
 
-CREATE TABLE Changing(
-	EventCode INTEGER,
-	urine VARCHAR(255),
-	stool VARCHAR(255)
-);
-
-ALTER TABLE Patient
-ADD FOREIGN KEY (id) REFERENCES Person (id);
-
-ALTER TABLE PatientEvent
-ADD FOREIGN KEY (id) REFERENCES Patient (Id);
-
-ALTER TABLE PatientEvent
-ADD FOREIGN KEY (EventCode) REFERENCES Event (EventCode);
 
 
