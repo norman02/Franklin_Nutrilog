@@ -1,5 +1,5 @@
 package nutrilog;
-
+import java.sql.*;
 public class command {
 
     // Information page controller
@@ -10,6 +10,7 @@ public class command {
      * LEFT JOIN
      * Person ON Person.id = Event.Personid;
      */
+    
     
     /*
      *Search Function Controller
