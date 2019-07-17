@@ -8,7 +8,6 @@ CREATE TABLE Person(
 	Id INTEGER NOT NULL,
 	FirstName VARCHAR(255)NOT NULL,
 	LastName VARCHAR(255) NOT NULL,
-	Gender CHAR,
 	PRIMARY KEY(Id) 
 );
 
@@ -22,35 +21,31 @@ CREATE TABLE AppUser(
 
 CREATE TABLE Patient(
 	PatientId INTEGER NOT NULL,
+	Gender CHAR NOT NULL,
 	DOB DATE NOT NULL,
+	Weight FLOAT,
 	PRIMARY KEY (PatientId),
 	FOREIGN KEY (PatientId) REFERENCES Person (Id)
 );
 
-CREATE TABLE PatientEvent(
-	EventId INTEGER NOT NULL,
+CREATE TABLE PatientHistory(
+	HistoryId INTEGER NOT NULL,
 	PatientId INTEGER NOT NULL,
-	EventCode INTEGER NOT NULL,
-	EventDate DATETIME NOT NULL
+	EventId INTEGER NOT NULL,
+	PRIMARY KEY (HistoryId),
+	FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
 );
 
-CREATE TABLE Feeding(
-	EventCode INTEGER NOT NULL,
+CREATE TABLE HistoryEvent(
+	EventId INTEGER NOT NULL,
+	HistoryId INTEGER NOT NULL,
+	EventName VARCHAR(255) NOT NULL,
 	FoodUnit FLOAT,
-	PRIMARY KEY (EventCode)
-);
-
-CREATE TABLE Changing(
-	EventCode INTEGER NOT NULL,
-	Urine BOOLEAN NOT NULL,
-	Stool BOOLEAN NOT NULL,
-	PRIMARY KEY (EventCode)
-);
-
-CREATE TABLE Weighing(
-	EventCode INTEGER NOT NULL,
-	Weight FLOAT NOT NULL,
-	PRIMARY KEY (EventCode)
+	Urine BOOLEAN,
+	Stool BOOLEAN,
+	Weight FLOAT,
+	PRIMARY KEY (EventId),
+	FOREIGN KEY (HistoryId) REFERENCES PatientHistory (HistoryId)
 );
 
 
