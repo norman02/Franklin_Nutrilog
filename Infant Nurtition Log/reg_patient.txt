@@ -1,0 +1,5 @@
+INSERT INTO Person (Id, FirstName, LastName, DOB)
+VALUES (0002, 'Mary', 'Mac', '1999-12-31');
+
+
+
