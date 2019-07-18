@@ -4,6 +4,10 @@ VALUES (001, 'Maxine', 'Powers');
 INSERT INTO AppUser (Userid, Username, Password)
 VALUES (001, 'MaxPower', 'strong');
 
+SELECT * FROM Person;
+
+SELECT * FROM AppUser;
+
 SELECT
 	Person.id, Person.FirstName, Person.LastName, AppUser.Username, AppUser.password
 FROM
