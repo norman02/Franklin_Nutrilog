@@ -38,6 +38,7 @@ CREATE TABLE Event(
 	Urine BOOLEAN,
 	Stool BOOLEAN,
 	Weight FLOAT,
+	EventDate DATE NOT NULL,
 	PRIMARY KEY (EventNum),
 	FOREIGN KEY (ID) REFERENCES Patient(ID)
 );
