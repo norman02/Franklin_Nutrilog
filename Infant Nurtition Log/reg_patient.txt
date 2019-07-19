@@ -1,7 +1,7 @@
 INSERT INTO Person (Id, FirstName, LastName, Gender, DOB)
 VALUES (0002, 'Mary', 'Mac', 'F', '1999-12-31');
 
-INSERT INTO Patient (PatientId)
+INSERT INTO Patient (Person)
 VALUES (0002);
 
 SELECT * FROM person;

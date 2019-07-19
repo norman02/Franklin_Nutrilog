@@ -1,7 +1,7 @@
 INSERT INTO Person(id, FirstName, LastName)
 VALUES (001, 'Maxine', 'Powers');
 
-INSERT INTO AppUser (Userid, Username, Password)
+INSERT INTO AppUser (Person, Username, Password)
 VALUES (001, 'MaxPower', 'strong');
 
 SELECT * FROM Person;
@@ -13,5 +13,5 @@ SELECT
 FROM
 	Person
 		LEFT JOIN
-	AppUser ON Person.id = AppUser.Userid
+	AppUser ON Person.id = AppUser.Person
 ORDER BY Person.id;

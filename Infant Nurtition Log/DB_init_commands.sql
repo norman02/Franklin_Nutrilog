@@ -14,38 +14,32 @@ CREATE TABLE Person(
 );
 
 CREATE TABLE AppUser(
-	UserId INTEGER NOT NULL,
+	Person INTEGER NOT NULL,
 	UserName VARCHAR(255) NOT NULL,
 	Password VARCHAR(255) NOT NULL,
-	PRIMARY KEY (UserId),
-	FOREIGN KEY (UserId) REFERENCES Person(Id)
+	PRIMARY KEY (Person),
+	FOREIGN KEY (Person) REFERENCES Person(Id)
 );
 
 CREATE TABLE Patient(
-	PatientId INTEGER NOT NULL,
+	Person INTEGER NOT NULL,
 	Weight FLOAT,
-	PRIMARY KEY (PatientId),
-	FOREIGN KEY (PatientId) REFERENCES Person (Id)
+	PRIMARY KEY (Person),
+	FOREIGN KEY (Person) REFERENCES Person (Id)
 );
 
-CREATE TABLE PatientHistory(
-	HistoryId INTEGER NOT NULL,
-	PatientId INTEGER NOT NULL,
-	EventId INTEGER NOT NULL,
-	PRIMARY KEY (HistoryId),
-	FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
-);
 
-CREATE TABLE HistoryEvent(
-	EventId INTEGER NOT NULL,
-	HistoryId INTEGER NOT NULL,
+
+CREATE TABLE Event(
+	Id INTEGER NOT NULL,
+	Patient INTEGER NOT NULL,
 	EventName VARCHAR(255) NOT NULL,
 	FoodUnit FLOAT,
 	Urine BOOLEAN,
 	Stool BOOLEAN,
 	Weight FLOAT,
-	PRIMARY KEY (EventId),
-	FOREIGN KEY (HistoryId) REFERENCES PatientHistory (HistoryId)
+	PRIMARY KEY (Id),
+	FOREIGN KEY (Patient) REFERENCES Patient (Id)
 );
 
 
