@@ -1,12 +1,19 @@
 INSERT INTO Person (Id, FirstName, LastName, Gender, DOB)
 VALUES (0002, 'Mary', 'Mac', 'F', '1999-12-31');
 
-INSERT INTO Patient (Person)
+INSERT INTO Patient (ID)
 VALUES (0002);
 
 SELECT * FROM person;
 
 SELECT * FROM Patient;
 
+SELECT 
+	Person.LastName, Person.Gender, Patient.Weight
+FROM
+	Person
+LEFT JOIN
+	Patient ON Person.id = Patient.ID
+ORDER BY Person.LastName;
 
 
