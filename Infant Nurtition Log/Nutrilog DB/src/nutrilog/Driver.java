@@ -17,13 +17,14 @@ import java.sql.Statement;
 public class Driver {
     public static void main(String[] args) 
     {
-        personController();
+        UpdatePerson();
     }
     
+
     /**
      * 
      */
-    static void personController() {
+    static void UpdatePerson() {
     // JDBC driver name and database URL
     final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
     final String DB_URL = "jdbc:mysql://localhost/nutrilogdb";
