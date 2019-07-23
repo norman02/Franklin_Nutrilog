@@ -1,10 +1,6 @@
 package nutrilog;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * A class for testing and development of function controllers
@@ -22,11 +18,15 @@ public class DB_Development {
      * @param args
      */
     public static void main(String[] args) {
+        PersonFunctionController pc = new PersonFunctionController();
 
         try {
             setup.dropDatabase();
             setup.create();
             setup.init();
+            pc.insertPerson(5, "Jo", "Dirt");
+            
+           
       
         } catch (SQLException e) {
             e.printStackTrace();
