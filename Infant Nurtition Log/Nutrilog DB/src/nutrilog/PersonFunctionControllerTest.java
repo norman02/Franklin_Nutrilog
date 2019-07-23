@@ -15,7 +15,7 @@ public class PersonFunctionControllerTest {
     String FirstName;
     String LastName ;
     int patientId;
-    char gender;
+    String gender;
     String dob;
 
     @Before
@@ -25,9 +25,9 @@ public class PersonFunctionControllerTest {
         PersonId = 10001;
         FirstName = "Maxine";
         LastName = "Powers";
-        int patientId = 3000;
-        char gender = 'F';
-        String dob = "1999-12-31";
+        patientId = 3000;
+        gender = "F";
+        dob = "1999-12-31";
         try {
             setup.dropDatabase();
             setup.create();
@@ -52,7 +52,8 @@ public class PersonFunctionControllerTest {
     }
     @Test
     public void testAddPatient() {
-        assertTrue(pfc.addPatient());
+        assertTrue(pfc.addPatient(
+                PersonId, FirstName, LastName, gender, dob));
     }
     
    

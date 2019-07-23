@@ -32,7 +32,11 @@ public class DB_Setup {
         sql = "CREATE TABLE Person(" + "    ID INTEGER NOT NULL,"
                 + "    FirstName VARCHAR(255)NOT NULL,"
                 + "    LastName VARCHAR(255) NOT NULL,"
-                + "    Gender CHAR," + "    DOB DATE,"
+                + "    Gender CHAR," 
+                + "    DOB DATE,"
+                + "    patient BOOLEAN DEFAULT 0,"
+                + "    user BOOLEAN DEFAULT 0,"
+                + "    Weight FLOAT,"    
                 + "    PRIMARY KEY(ID)" + ")";
         stmt.executeUpdate(sql);
         System.out.println(

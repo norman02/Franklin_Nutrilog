@@ -25,6 +25,7 @@ public class DB_Development {
             setup.create();
             setup.init();
             pc.insertPerson(5, "Jo", "Dirt");
+            pc.addPatient(0002, "Mary", "Mac", "F", "1999-12-31");
             
            
       

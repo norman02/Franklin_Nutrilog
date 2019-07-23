@@ -33,7 +33,7 @@ public class PersonFunctionController extends DB_Controller  {
             stmt.setString(2, first);
             stmt.setString(3, last);
             
-            int row = stmt.executeUpdate();
+            stmt.executeUpdate();
 
             // rows affected
             //System.out.println(row); //1
@@ -46,9 +46,29 @@ public class PersonFunctionController extends DB_Controller  {
     }
 
 
-    public boolean addPatient() {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean addPatient(int id, String firstName, 
+            String lastName, String gender, String dob) {
+        try {
+                String sql = "INSERT INTO Person("
+                        + "id, FirstName, LastName, gender, dob)" + 
+                        "VALUES (?, ?, ?, ?, ?)";
+                        
+                stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, id);
+                stmt.setString(2, firstName);
+                stmt.setString(3, lastName);
+                stmt.setString(4, gender);
+                stmt.setString(5, dob);                
+                stmt.executeUpdate();
+
+                // rows affected
+                //System.out.println(row); //1
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+           
+            return false;
     }
 
 
