@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Class controls the UPDATE function for the Person table
+ * Class controls the UPDATE function for the Person table. Contains methods
+ * to add patients, users, or simply persons. Persons are identified as
+ * 'users' or 'patients' via a boolean field with those names.
  * @author John Norman
  *
  */

@@ -3,6 +3,7 @@ package nutrilog;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * The database controller establishes a connection to the 
@@ -18,6 +19,8 @@ public class DB_Controller {
     // Database credentials
     static final String USER = "root";
     static final String PASS = "";
+    Connection conn = null;
+    Statement stmt = null;
     
 
     /**
@@ -26,7 +29,7 @@ public class DB_Controller {
      */
     Connection connect() {
 
-        Connection conn = null;
+        
         try {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,6 +41,22 @@ public class DB_Controller {
         }
 
         return conn;
+    }
+    void close() {
+        System.out.println("Closing connection...");
+        try {
+            
+            if (stmt != null)
+                conn.close();
+        } catch (SQLException se) {
+        } // do nothing
+        try {
+            if (conn != null)
+                conn.close();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } // end close resources
+        System.out.println("connection closed");
     }
 
 }
