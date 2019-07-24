@@ -18,6 +18,7 @@ public class EventFunctionControllerTest {
     String gender;
     boolean urine;
     boolean stool;
+    double weight;
 
     @Before
     public void setUp() throws Exception {
@@ -34,7 +35,7 @@ public class EventFunctionControllerTest {
         gender = "M";
         urine = true;
         stool = false;
-        
+        weight = 87.6;
         pfc.addPatient(ID, firstName, lastName, gender, date);
     }
 
@@ -60,7 +61,8 @@ public class EventFunctionControllerTest {
 
     @Test
     public void testLogWeight() {
-        assertTrue(event.logWeight());
+        
+        assertTrue(event.logWeight(ID, date, weight));
     }
 
 }

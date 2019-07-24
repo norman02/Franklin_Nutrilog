@@ -49,6 +49,8 @@ public class DB_Development {
                 UserName, Password);
         double unit = 40.2;
         efc.logFeeding(PersonId, dob, unit );
+        efc.logChanging(PersonId, dob, false, true);
+        efc.logWeight(PersonId, dob, unit);
 
     }
 }
