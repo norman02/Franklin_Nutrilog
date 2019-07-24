@@ -18,106 +18,141 @@ public class DB_Setup {
 
     /**
      * Initializes the Nutrilog database
+     * @return 
      * 
      * @throws SQLException
      */
-    void init() throws SQLException {
-        String sql;
-        conn = connect("jdbc:mysql://localhost/Nutrilog_Data", USER, PASS);
-        // Execute a query
-        System.out.println("Creating tables in Nutrilog_Data...");
-        stmt = conn.createStatement();
-        // Create Person Table
-        System.out.println("Creating Person in Nutrilog_Data...");
-        sql = "CREATE TABLE Person(" + "    ID INTEGER NOT NULL,"
-                + "    FirstName VARCHAR(255)NOT NULL,"
-                + "    LastName VARCHAR(255) NOT NULL,"
-                + "    Gender CHAR," 
-                + "    DOB DATE,"
-                + "    patient BOOLEAN DEFAULT 0,"
-                + "    user BOOLEAN DEFAULT 0,"
-                + "    Weight FLOAT,"    
-                + "    PRIMARY KEY(ID)" + ")";
-        stmt.executeUpdate(sql);
-        System.out.println(
-                "Succesfully created Person in " + "Nutrilog_Data...");
-        // Create Application User table
-        System.out.println("Creating AppUser in Nutrilog_Data...");
-        sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL,"
-                + "    UserName VARCHAR(255) NOT NULL,"
-                + "    Password VARCHAR(255) NOT NULL,"
-                + "    PRIMARY KEY (ID),"
-                + "    FOREIGN KEY (ID) REFERENCES Person(Id)" + ")";
-        stmt.executeUpdate(sql);
-        System.out.println(
-                "Succesfully created AppUser in " + "Nutrilog_Data...");
-        // Create Patient table
-        System.out.println("Creating Patient in Nutrilog_Data...");
-        sql = "CREATE TABLE Patient(\r\n" + "    ID INTEGER NOT NULL,\r\n"
-                + "    Weight FLOAT,\r\n" + "    PRIMARY KEY (ID),\r\n"
-                + "    FOREIGN KEY (ID) REFERENCES Person (ID)\r\n" + ")";
-        stmt.executeUpdate(sql);
-        System.out.println(
-                "Succesfully Created Patient in " + "Nutrilog_Data...");
-        // Create Event table
-        System.out.println("Creating Event in Nutrilog_Data...");
-        sql = "CREATE TABLE Event(\r\n"
-                + "    EventNum INTEGER NOT NULL,\r\n"
-                + "    ID INTEGER NOT NULL,\r\n"
-                + "    EventName VARCHAR(255) NOT NULL,\r\n"
-                + "    FoodUnit FLOAT,\r\n" + "    Urine BOOLEAN,\r\n"
-                + "    Stool BOOLEAN,\r\n" + "    Weight FLOAT,\r\n"
-                + "    EventDate DATE NOT NULL,\r\n"
-                + "    PRIMARY KEY (EventNum),\r\n"
-                + "    FOREIGN KEY (ID) REFERENCES Patient(ID)\r\n" + ")";
-        stmt.executeUpdate(sql);
-        System.out.println(
-                "Succesfully Created Event in " + "Nutrilog_Data...");
-        close();
+    boolean init(){
+        try {
+            String sql;
+            conn = connect("jdbc:mysql://localhost/Nutrilog_Data", USER,
+                    PASS);
+            // Execute a query
+            stmt = conn.createStatement();
+            // Create Person Table
+            System.out
+                    .println("Creating table person in Nutrilog_data...");
+            sql = "CREATE TABLE Person(" + "    ID INTEGER NOT NULL,"
+                    + "    FirstName VARCHAR(255)NOT NULL,"
+                    + "    LastName VARCHAR(255) NOT NULL,"
+                    + "    Gender CHAR," + "    DOB DATE,"
+                    + "    patient BOOLEAN DEFAULT 0,"
+                    + "    UserName VARCHAR(255) NOT NULL,"
+                    + "    Password VARCHAR(255) NOT NULL,"
+                    + "    user BOOLEAN DEFAULT 0," + "    Weight FLOAT,"
+                    + "    PRIMARY KEY(ID)" + ")";
+            stmt.executeUpdate(sql);
+            System.out.println(
+                    "Succesfully created person in Nutrilog_data");
+            // Create Application User table
+            System.out
+                    .println("Creating table AppUser in Nutrilog_data...");
+            sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL,"
+                    + "    UserName VARCHAR(255) NOT NULL,"
+                    + "    Password VARCHAR(255) NOT NULL,"
+                    + "    PRIMARY KEY (ID),"
+                    + "    FOREIGN KEY (ID) REFERENCES Person(Id)" + ")";
+            stmt.executeUpdate(sql);
+            System.out.println(
+                    "Succesfully created AppUser in Nutrilog_data");
+            // Create Patient table
+            System.out
+                    .println("Creating table Patient in Nutrilog_data...");
+            sql = "CREATE TABLE Patient(\r\n"
+                    + "    ID INTEGER NOT NULL,\r\n"
+                    + "    Weight FLOAT,\r\n" + "    PRIMARY KEY (ID),\r\n"
+                    + "    FOREIGN KEY (ID) REFERENCES Person (ID)\r\n"
+                    + ")";
+            stmt.executeUpdate(sql);
+            System.out.println(
+                    "Succesfully created Patient in Nutrilog_data");
+            // Create Event table
+            System.out.println("Creating table Event in Nutrilog_data...");
+            sql = "CREATE TABLE Event(\r\n"
+                    + "    EventNum INTEGER NOT NULL,\r\n"
+                    + "    ID INTEGER NOT NULL,\r\n"
+                    + "    EventName VARCHAR(255) NOT NULL,\r\n"
+                    + "    FoodUnit FLOAT,\r\n" + "    Urine BOOLEAN,\r\n"
+                    + "    Stool BOOLEAN,\r\n" + "    Weight FLOAT,\r\n"
+                    + "    EventDate DATE NOT NULL,\r\n"
+                    + "    PRIMARY KEY (EventNum),\r\n"
+                    + "    FOREIGN KEY (ID) REFERENCES Patient(ID)\r\n"
+                    + ")";
+            stmt.executeUpdate(sql);
+            System.out.println(
+                    "Succesfully created Event in Nutrilog_data");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            //close resources
+            close();
+        }
+        return false;
 
     }
 
     /**
      * Creates the database Nutrilog_Data
+     * @return 
      * 
      * @throws SQLException
      */
-    void create() throws SQLException {
-
-        conn = connect(DB_URL, USER, PASS);
-        // Execute a query
-        System.out.println("Creating database...");
-        stmt = conn.createStatement();
-
-        String sql = "CREATE DATABASE NUTRILOG_DATA";
-        stmt.executeUpdate(sql);
-        System.out.println("Database created successfully...");
-        close();
+    boolean create(){
+        try {
+            System.out.println("Connecting to the database...");
+            conn = connect(DB_URL, USER, PASS);
+            System.out.println("Succesfully connected to database");
+            // Execute a query
+            stmt = conn.createStatement();
+            System.out.println("Creating databas Nutrilog_data...");
+            String sql = "CREATE DATABASE NUTRILOG_DATA";
+            stmt.executeUpdate(sql);
+            System.out.println("Succesfully created Nutrilog_data");
+            return true;
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        } finally {
+            // close resources
+            close();
+        }
+        return false;
 
     }
 
     /**
      * Deletes Nutrilog_Data to create a fresh test run
+     * @return 
      * 
      * @throws SQLException
      */
-    void dropDatabase() throws SQLException {
-
-        conn = connect(DB_URL, USER, PASS);
-        // Execute a query
-        System.out.println("Deleting database...");
-        stmt = conn.createStatement();
-
-        String sql = "DROP DATABASE Nutrilog_Data";
-        stmt.executeUpdate(sql);
-        System.out.println("Database deleted successfully...");
-
-        // close resources
-        close();
+    boolean dropDatabase(){
+        try {
+            System.out.println("Connecting to the database...");
+            conn = connect(DB_URL, USER, PASS);
+            System.out.println("Succesfully connected to database");
+            // Execute a query
+            stmt = conn.createStatement();
+            String sql = "DROP DATABASE Nutrilog_Data";
+            System.out.println("deleting database 'Nutrilog_data'...");
+            stmt.executeUpdate(sql);
+            System.out.println("database deleted");
+            return true;
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        } finally {
+         // close resources
+            close();
+        }
+        return false;
+        
 
     }
 
     private void close() {
+        System.out.println("Closing connection...");
         try {
             if (stmt != null)
                 conn.close();
@@ -129,7 +164,7 @@ public class DB_Setup {
         } catch (SQLException se) {
             se.printStackTrace();
         } // end close resources
-
+        System.out.println("connection closed");
     }
 
     private Connection connect(String url, String user, String password) {
@@ -138,7 +173,7 @@ public class DB_Setup {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Open a connection
-            System.out.println("Connecting to database...");
+            
             conn = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
