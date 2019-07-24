@@ -12,10 +12,12 @@ public class DB_SetupTest {
     @Before
     public void setUp() throws Exception {
         db = new DB_Setup();
+        db.create();
     }
 
     @After
     public void tearDown() throws Exception {
+        db.dropDatabase();
     }
     @Test
     public void testDefaultConstructor() {
@@ -23,12 +25,14 @@ public class DB_SetupTest {
     }
     @Test
     public void testInit() {
+        
         assertTrue(db.init());
     }
 
     @Test
     public void testCreate() {
-        assertTrue(db.create());
+       db.dropDatabase();
+       assertTrue(db.create());
     }
 
     @Test

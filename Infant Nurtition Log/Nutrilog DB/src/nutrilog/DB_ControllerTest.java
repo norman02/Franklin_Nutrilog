@@ -7,9 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class DB_ControllerTest {
+    DB_Controller d;
 
     @Before
     public void setUp() throws Exception {
+        d = new DB_Controller();
     }
 
     @After
@@ -17,8 +19,18 @@ public class DB_ControllerTest {
     }
 
     @Test
-    public void test() {
-        fail("Not yet implemented");
+    public void testDB_Controller() {
+        assertNotNull(d);
+    }
+
+    @Test
+    public void testConnect() {
+        assertNotNull(d.connect());
+    }
+
+    @Test
+    public void testClose() {
+        assertTrue(d.close());
     }
 
 }

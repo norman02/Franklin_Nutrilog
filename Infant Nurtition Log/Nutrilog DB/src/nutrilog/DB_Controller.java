@@ -22,14 +22,17 @@ public class DB_Controller {
     Connection conn = null;
     Statement stmt = null;
     
-
+    DB_Controller(){
+        //Default
+    }
     /**
      * Establishes a connection to the database
      * @return the connection
      */
     Connection connect() {
 
-        
+        System.out.println("DB_Controller.connect() is connecting to the "
+                + "database...");
         try {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -39,24 +42,43 @@ public class DB_Controller {
 
             e.printStackTrace();
         }
-
+        System.out.println("Connection succesful");
         return conn;
     }
-    void close() {
-        System.out.println("Closing connection...");
+    Connection connect(String url) {
+        String db_url = url;
+
+        System.out.println("DB_Controller.connect() is connecting to the "
+                + "database...");
+        try {
+            // Register JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Open a connection
+            conn = DriverManager.getConnection(db_url, USER, PASS);
+        } catch (ClassNotFoundException | SQLException e) {
+
+            e.printStackTrace();
+        }
+        System.out.println("Connection succesful");
+        return conn;
+    }
+    boolean close() {
+        System.out.println("DB_Controller.Close is closing connection...");
         try {
             
             if (stmt != null)
-                conn.close();
+                stmt.close();
         } catch (SQLException se) {
         } // do nothing
         try {
             if (conn != null)
                 conn.close();
+            System.out.println("connection closed");
+            return true;
         } catch (SQLException se) {
             se.printStackTrace();
         } // end close resources
-        System.out.println("connection closed");
+        return false;
     }
 
 }

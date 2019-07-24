@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DB_Setup{
+public class DB_SetupOriginal extends DB_Controller{
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/";
@@ -13,8 +13,8 @@ public class DB_Setup{
     // Database credentials
     static final String USER = "root";
     static final String PASS = "";
-    Connection conn;
-    Statement stmt;
+    Connection conn = super.connect();
+    Statement stmt = super.stmt;
 
     /**
      * Initializes the Nutrilog database
@@ -25,7 +25,8 @@ public class DB_Setup{
     boolean init(){
         try {
             String sql;
-            conn = connect("jdbc:mysql://localhost/Nutrilog_Data",USER,PASS);
+//            conn = connect("jdbc:mysql://localhost/Nutrilog_Data", USER,
+//                    PASS);
             // Execute a query
             stmt = conn.createStatement();
             // Create Person Table
@@ -95,19 +96,17 @@ public class DB_Setup{
 
     }
 
-
-
     /**
      * Creates the database Nutrilog_Data
      * @return 
      * 
      * @throws SQLException
      */
-    boolean create() {
+    boolean create(){
         try {
-            System.out.println("Connecting to the database...");
-            conn = connect(DB_URL, USER, PASS);
-            System.out.println("Succesfully connected to database");
+//            System.out.println("Connecting to the database...");
+//            conn = connect(DB_URL, USER, PASS);
+//            System.out.println("Succesfully connected to database");
             // Execute a query
             stmt = conn.createStatement();
             System.out.println("Creating databas Nutrilog_data...");
@@ -120,15 +119,7 @@ public class DB_Setup{
             e.printStackTrace();
         } finally {
             // close resources
-            try {
-                System.out.println("DB_Setup.Create() is "
-                        + "closing connection...");
-                conn.close();
-                System.out.println("connection closed");
-            } catch (SQLException e) {
-                
-                e.printStackTrace();
-            }
+            close();
         }
         return false;
 
@@ -142,8 +133,8 @@ public class DB_Setup{
      */
     boolean dropDatabase(){
         try {
-            System.out.println("Connecting to the database...");
-            conn = connect(DB_URL, USER, PASS);
+//            System.out.println("Connecting to the database...");
+//            conn = connect(DB_URL, USER, PASS);
             System.out.println("Succesfully connected to database");
             // Execute a query
             stmt = conn.createStatement();
@@ -164,35 +155,35 @@ public class DB_Setup{
 
     }
 
-    private void close() {
-        System.out.println("Closing connection...");
-        try {
-            if (stmt != null)
-                conn.close();
-        } catch (SQLException se) {
-        } // do nothing
-        try {
-            if (conn != null)
-                conn.close();
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } // end close resources
-        System.out.println("connection closed");
-    }
+//    private void close() {
+//        System.out.println("Closing connection...");
+//        try {
+//            if (stmt != null)
+//                conn.close();
+//        } catch (SQLException se) {
+//        } // do nothing
+//        try {
+//            if (conn != null)
+//                conn.close();
+//        } catch (SQLException se) {
+//            se.printStackTrace();
+//        } // end close resources
+//        System.out.println("connection closed");
+//    }
 
-    private Connection connect(String url, String user, String password) {
-
-        try {
-            // Register JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Open a connection
-            
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return conn;
-    }
+//    private Connection connect(String url, String user, String password) {
+//
+//        try {
+//            // Register JDBC driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            // Open a connection
+//            
+//            conn = DriverManager.getConnection(url, user, password);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return conn;
+//    }
 }//
