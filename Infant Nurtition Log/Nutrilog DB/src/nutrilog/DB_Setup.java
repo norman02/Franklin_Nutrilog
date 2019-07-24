@@ -32,15 +32,19 @@ public class DB_Setup {
             // Create Person Table
             System.out
                     .println("Creating table person in Nutrilog_data...");
-            sql = "CREATE TABLE Person(" + "    ID INTEGER NOT NULL,"
+            sql = "CREATE TABLE Person(" 
+                    + "    ID INTEGER NOT NULL,"
                     + "    FirstName VARCHAR(255)NOT NULL,"
                     + "    LastName VARCHAR(255) NOT NULL,"
-                    + "    Gender CHAR," + "    DOB DATE,"
+                    + "    Gender CHAR," 
+                    + "    DOB DATE,"
                     + "    patient BOOLEAN DEFAULT 0,"
-                    + "    UserName VARCHAR(255) NOT NULL,"
-                    + "    Password VARCHAR(255) NOT NULL,"
-                    + "    user BOOLEAN DEFAULT 0," + "    Weight FLOAT,"
-                    + "    PRIMARY KEY(ID)" + ")";
+                    + "    UserName VARCHAR(255),"
+                    + "    Password VARCHAR(255),"
+                    + "    user BOOLEAN DEFAULT 0," 
+                    + "    Weight FLOAT,"
+                    + "    PRIMARY KEY(ID)" 
+                    + ")";
             stmt.executeUpdate(sql);
             System.out.println(
                     "Succesfully created person in Nutrilog_data");

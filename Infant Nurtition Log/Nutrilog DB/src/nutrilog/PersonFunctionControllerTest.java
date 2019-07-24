@@ -26,7 +26,7 @@ public class PersonFunctionControllerTest {
     String Password;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         pfc = new PersonFunctionController();
         setup = new DB_Setup();
         PersonId = 10001;
@@ -37,13 +37,9 @@ public class PersonFunctionControllerTest {
         dob = "1999-12-31";
         UserName = "MaxPower";
         Password = "1337!P@s5w0rd!";
-        try {
-            setup.dropDatabase();
-            setup.create();
-            setup.init();    
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        setup.dropDatabase();
+        setup.create();
+        setup.init();
         
     }
 

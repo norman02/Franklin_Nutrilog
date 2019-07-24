@@ -5,20 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Allows for updating the tables in the database dealing with people
+ * Class controls the UPDATE function for the Person table
  * @author John Norman
  *
  */
 public class PersonFunctionController extends DB_Controller  {
+    /**
+     * Establish connection to database
+     */
     Connection conn = super.connect();
+    /**
+     * Prepare statment
+     */
     PreparedStatement stmt = null;
    
 
     /**
      * Inserts a row into the person table
-     * @param ID
-     * @param first
-     * @param last
+     * @param ID: unique identification number #Phone or #ssn
+     * @param first: Persons first name
+     * @param last: Person's last name
      * @return insert successful true/false
      */
     public boolean insertPerson(int ID, String first, String last) {
@@ -47,12 +53,12 @@ public class PersonFunctionController extends DB_Controller  {
 
     /**
      * Adds a patient to the database
-     * @param id
+     * @param id unique id number ie phone or ssn
      * @param firstName
      * @param lastName
-     * @param gender
-     * @param dob
-     * @return boolean successful t/f
+     * @param gender F, M, or O. 
+     * @param dob Date of birth format 'yyyy/mm/dd'
+     * @return boolean successful update t/f
      */
     public boolean addPatient(int id, String firstName, 
             String lastName, String gender, String dob) {
@@ -89,15 +95,32 @@ public class PersonFunctionController extends DB_Controller  {
     }
 
 
+    /**
+     * @param Id unique id number ie phone or ssn
+     * @param firstName
+     * @param lastName
+     * @param userName
+     * @param password
+     * @return boolean update successful?
+     */
     public boolean addUser(int Id, String firstName, String lastName,
             String userName, String password) {
-        String sql = 
-                "INSERT INTO Person(id, FirstName, LastName)" + 
-                "VALUES (001, 'Maxine', 'Powers');" + 
-                "INSERT INTO AppUser (ID, Username, Password)" + 
-                "VALUES (001, 'MaxPower', 'strong');";
+        String sql = "INSERT INTO Person(id, FirstName, LastName"
+                + ", UserName, Password, user)"
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+        
         try {
+            System.out.println("Inserting data into person...");
             stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, Id);
+            stmt.setString(2, firstName);
+            stmt.setString(3, lastName);
+            stmt.setString(4, userName);
+            stmt.setString(5, password);
+            stmt.setInt(6, 1);
+            stmt.executeUpdate();
+            System.out.println("data successfully inserted");
+            
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -37,18 +37,12 @@ public class DB_Development {
         dob = "1999-12-31";
         UserName = "MaxPower";
         Password = "1337!P@s5w0rd!";
-        try {
-            setup.dropDatabase();
-            setup.create();
-            setup.init();
-            
-            pfc.addUser(PersonId, FirstName, LastName,
-                    UserName, Password);
-           
-      
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        setup.dropDatabase();
+        setup.create();
+        setup.init();
+        
+        pfc.addUser(PersonId, FirstName, LastName,
+                UserName, Password);
 
     }
 }
