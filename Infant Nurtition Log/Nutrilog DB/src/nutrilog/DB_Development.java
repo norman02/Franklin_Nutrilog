@@ -13,7 +13,8 @@ import java.sql.SQLException;
  */
 public class DB_Development {
     static DB_Setup setup = new DB_Setup();
-    PersonFunctionController pfc;    
+    static PersonFunctionController pfc; 
+    static EventFunctionController efc;
     static int PersonId;
     static String FirstName;
     static String LastName ;
@@ -22,12 +23,15 @@ public class DB_Development {
     static String dob;
     static String UserName;
     static String Password;
+    
     /**
      * @param args
      */
     public static void main(String[] args) {
-        PersonFunctionController pfc = new PersonFunctionController();
         pfc = new PersonFunctionController();
+        efc = new EventFunctionController();
+        
+        
         setup = new DB_Setup();
         PersonId = 10001;
         FirstName = "Maxine";
@@ -43,6 +47,8 @@ public class DB_Development {
         
         pfc.addUser(PersonId, FirstName, LastName,
                 UserName, Password);
+        double unit = 40.2;
+        efc.logFeeding(PersonId, dob, unit );
 
     }
 }

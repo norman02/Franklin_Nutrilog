@@ -78,8 +78,8 @@ public class DB_Setup{
                     + "    FoodUnit FLOAT,\r\n" + "    Urine BOOLEAN,\r\n"
                     + "    Stool BOOLEAN,\r\n" + "    Weight FLOAT,\r\n"
                     + "    EventDate DATE NOT NULL,\r\n"
-                    + "    PRIMARY KEY (EventNum),\r\n"
-                    + "    FOREIGN KEY (ID) REFERENCES Patient(ID)\r\n"
+                    + "    PRIMARY KEY (EventNum)\r\n"
+ //                   + "    ,FOREIGN KEY (ID) REFERENCES Patient(ID)\r\n"
                     + ")";
             stmt.executeUpdate(sql);
             System.out.println(
