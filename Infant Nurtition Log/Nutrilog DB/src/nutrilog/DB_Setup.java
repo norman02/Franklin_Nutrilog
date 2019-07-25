@@ -37,8 +37,6 @@ public class DB_Setup{
                     + "    LastName VARCHAR(255) NOT NULL,"
                     + "    Gender CHAR," 
                     + "    DOB DATE,"
-                    + "    UserName VARCHAR(255),"
-                    + "    Password VARCHAR(255),"
                     + "    Weight FLOAT,"
                     + "    PRIMARY KEY(ID)" 
                     + ")";
@@ -51,6 +49,7 @@ public class DB_Setup{
             sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL,"
                     + "    UserName VARCHAR(255) NOT NULL,"
                     + "    Password VARCHAR(255) NOT NULL"
+
 //                    + "    PRIMARY KEY (ID),"
 //                    + "    FOREIGN KEY (ID) REFERENCES Person(Id)" 
                     + ")"

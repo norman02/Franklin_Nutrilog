@@ -108,9 +108,10 @@ public class PersonFunctionController extends DB_Controller  {
      */
     public boolean addUser(int Id, String firstName, String lastName,
             String userName, String password) {
-        String sql = "INSERT INTO Person(id, FirstName, LastName"
-                + ", UserName, Password)"
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = ""
+                + "INSERT INTO Person(id, FirstName, LastName)"
+                + "VALUES (?, ?, ?);";
+               
         
         try {
             System.out.println("Inserting data into person...");
@@ -118,8 +119,17 @@ public class PersonFunctionController extends DB_Controller  {
             stmt.setInt(1, Id);
             stmt.setString(2, firstName);
             stmt.setString(3, lastName);
-            stmt.setString(4, userName);
-            stmt.setString(5, password);
+            stmt.executeUpdate();
+            System.out.println("data successfully inserted");
+            System.out.println("pfc.addUser() inserting data into appUser");
+            String sql2 = ""
+            + "INSERT INTO AppUser(id, username, password)"
+            + "VALUES (?, ?, ?);";
+            stmt = conn.prepareStatement(sql2);
+            stmt.setInt(1, Id);
+            stmt.setString(2, userName);
+            stmt.setString(3, password);
+
             stmt.executeUpdate();
             System.out.println("data successfully inserted");
             

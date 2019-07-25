@@ -46,8 +46,8 @@ public class DB_Development {
         setup.init();
         pfc.addPatient(patientId, FirstName, LastName,
                 gender, dob);
-//        pfc.addUser(PersonId, FirstName, LastName,
-//                UserName, Password);
+        pfc.addUser(PersonId, FirstName, LastName,
+                UserName, Password);
         double unit = 40.2;
         efc.logFeeding(PersonId, dob, unit );
         efc.logChanging(PersonId, dob, false, true);
