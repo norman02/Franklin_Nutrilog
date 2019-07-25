@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Class controls the UPDATE function for the Person, Patient and User
- *  tables. Contains methods to add patients, users, or simply persons.
+ * Class controls the UPDATE function for the Person table. Contains methods
+ * to add patients, users, or simply persons. Persons are identified as
+ * 'users' or 'patients' via a boolean field with those names.
  * @author John Norman
- * @Version 2019/7/26
  *
  */
-public class PersonFunctionController extends DB_Controller  {
+public class PersonFunctionControllerOriginal extends DB_Controller  {
     /**
      * Establish connection to database
      */
@@ -65,9 +65,14 @@ public class PersonFunctionController extends DB_Controller  {
     public boolean addPatient(int id, String firstName, 
             String lastName, String gender, String dob) {
         try {
-                String sql = "INSERT INTO Person("
-                        + "id, FirstName, LastName, gender, dob)" + 
-                        "VALUES (?, ?, ?, ?, ?)";
+                String sql = ""
+                        +   "INSERT INTO Person("
+                        +   "id, FirstName, LastName, gender, dob)" 
+                        +   "VALUES (?, ?, ?, ?, ?)"
+                        +   "INSERT INTO PATIENT (Id)"
+                        +   "VALUES (?)"
+                        
+                        ;
                 
                 
                         
@@ -76,15 +81,9 @@ public class PersonFunctionController extends DB_Controller  {
                 stmt.setString(2, firstName);
                 stmt.setString(3, lastName);
                 stmt.setString(4, gender);
-                stmt.setString(5, dob);                
-                stmt.executeUpdate();
-                
-                String sql2= ""
-                        + "INSERT INTO patient(ID)"
-                        + "VALUES (?)";
-                
-                stmt = conn.prepareStatement(sql2);
-                stmt.setInt(1, id);
+                stmt.setString(5, dob); 
+                stmt.setInt(6, id);
+                stmt.executeUpdate(); 
                 stmt.executeUpdate();
 
                 // rows affected
@@ -109,7 +108,7 @@ public class PersonFunctionController extends DB_Controller  {
     public boolean addUser(int Id, String firstName, String lastName,
             String userName, String password) {
         String sql = "INSERT INTO Person(id, FirstName, LastName"
-                + ", UserName, Password)"
+                + ", UserName, Password, user)"
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         
         try {
@@ -120,6 +119,7 @@ public class PersonFunctionController extends DB_Controller  {
             stmt.setString(3, lastName);
             stmt.setString(4, userName);
             stmt.setString(5, password);
+            stmt.setInt(6, 1);
             stmt.executeUpdate();
             System.out.println("data successfully inserted");
             

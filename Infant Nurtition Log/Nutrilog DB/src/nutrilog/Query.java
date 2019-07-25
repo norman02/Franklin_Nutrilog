@@ -1,6 +1,6 @@
 package nutrilog;
 
-public class Query {
+public class Query extends DB_Controller {
     
     public String peopleByName(String lastName) {
         return "Maxine";

@@ -37,10 +37,8 @@ public class DB_Setup{
                     + "    LastName VARCHAR(255) NOT NULL,"
                     + "    Gender CHAR," 
                     + "    DOB DATE,"
-                    + "    patient BOOLEAN DEFAULT 0,"
                     + "    UserName VARCHAR(255),"
                     + "    Password VARCHAR(255),"
-                    + "    user BOOLEAN DEFAULT 0," 
                     + "    Weight FLOAT,"
                     + "    PRIMARY KEY(ID)" 
                     + ")";
@@ -52,19 +50,22 @@ public class DB_Setup{
                     .println("Creating table AppUser in Nutrilog_data...");
             sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL,"
                     + "    UserName VARCHAR(255) NOT NULL,"
-                    + "    Password VARCHAR(255) NOT NULL,"
-                    + "    PRIMARY KEY (ID),"
-                    + "    FOREIGN KEY (ID) REFERENCES Person(Id)" + ")";
+                    + "    Password VARCHAR(255) NOT NULL"
+//                    + "    PRIMARY KEY (ID),"
+//                    + "    FOREIGN KEY (ID) REFERENCES Person(Id)" 
+                    + ")"
+                    ;
             stmt.executeUpdate(sql);
             System.out.println(
                     "Succesfully created AppUser in Nutrilog_data");
             // Create Patient table
             System.out
                     .println("Creating table Patient in Nutrilog_data...");
-            sql = "CREATE TABLE Patient(\r\n"
-                    + "    ID INTEGER NOT NULL,\r\n"
-                    + "    Weight FLOAT,\r\n" + "    PRIMARY KEY (ID),\r\n"
-                    + "    FOREIGN KEY (ID) REFERENCES Person (ID)\r\n"
+            sql = "CREATE TABLE Patient("
+                    + "    ID INTEGER NOT NULL,"
+                    + "    Weight FLOAT "
+//                    + "    PRIMARY KEY (ID),\r\n"
+//                    + "    FOREIGN KEY (ID) REFERENCES Person (ID)\r\n"
                     + ")";
             stmt.executeUpdate(sql);
             System.out.println(
