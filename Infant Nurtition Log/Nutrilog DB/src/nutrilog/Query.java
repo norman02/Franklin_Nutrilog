@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Query extends DB_Controller {
     Connection conn = super.connect();
     String del = ", ";
-    String resultString = "fail";
+    String resultString = "UNEXPECTED FAILURE";
 
 
     
@@ -24,10 +24,9 @@ public class Query extends DB_Controller {
                     + "FROM "
                     + "person "
                     + "LEFT JOIN "
-                    + "patient patient USING (ID)"
-                    + "WHERE "
-                    + "Person.lastname = patient.lastname ";
-                    
+                    + "patient patient USING (lastname) "
+                    + "WHERE lastName = '"
+                    +  lastName +"';";
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             
@@ -52,19 +51,50 @@ public class Query extends DB_Controller {
             e.printStackTrace();
         } 
         
-        System.out.println("ResultString is:");
-        System.out.println(resultString);
+        
         return (resultString );
     }
-    public boolean patientByID() {
-//        try {
-//            stmt = conn.createStatement();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            close();
-//        }
-        return true;
+    public String patientByID(int id) {
+
+        
+        try {
+            
+            String sql =""
+                    + "SELECT "
+                    + "Person.ID, Person.FirstName, Person.lastname, "
+                    + "Person.gender, person.dob, Patient.LastName "
+                    + "FROM "
+                    + "person "
+                    + "LEFT JOIN "
+                    + "patient patient USING (lastname) "
+                    + "WHERE person.id = '"
+                    +  id +"';";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()) {
+
+                
+                int temp = rs.getInt("id");
+                String ID = Integer.toString(temp);
+                String first = rs.getString("FirstName");
+                String last = rs.getString("LastName");
+                String gender = rs.getString("gender");
+                String DOB = rs.getString("dob");
+                
+                
+                
+                resultString =id + del+ first + del + last + del
+                        + gender + del + DOB;
+            }
+            stmt.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        
+        
+        return (resultString );
     }
     public boolean eventById() {
 //        try {

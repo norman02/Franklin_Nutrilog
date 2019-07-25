@@ -26,6 +26,7 @@ public class QueryTest {
     String UserName2;
     String password2;
     double weight2;
+    String del = ", ";
     
     
     
@@ -36,14 +37,14 @@ public class QueryTest {
         firstName = "Jessica";
         lastName = "Jones";
         gender = "F";
-        dob = "1992/03/04";
+        dob = "1992-03-04";
         UserName = "Jewel";
         password = "?1337P@55w()rd!";
         id2 = 7000;
         firstName2 = "Luke";
         lastName2 = "Cage";
         gender2 = "M";
-        dob2 = "1987/07/14";
+        dob2 = "1987-07-14";
         UserName2 = "LCage";
         password2 = "Jessica";
 
@@ -57,7 +58,7 @@ public class QueryTest {
         pfc = new PersonFunctionController();
         pfc.addPatient(id, firstName, lastName, gender, dob);
         pfc.addPatient(id2, firstName2, lastName2, gender2, dob2);
-//        pfc.addUser(90001, firstName, "poe", UserName, password);
+
               
     }
     
@@ -74,20 +75,26 @@ public class QueryTest {
     public void testPatientByName() {
         String result = q.patientByName(lastName);
         String its = Integer.toString(id);
-        String del = ", ";
         String target = its + del + firstName + del + lastName + 
-                del + gender + del + dob;
-        System.out.println("Target string is");
-        System.out.println(target);
+                del + gender + del + dob;    
         assertTrue(target.equals(result));
-
+        
+        
     }
 
 
 
     @Test
-    public void testPeopleByID() {
-        assertTrue(q.patientByID());
+    public void testPatientByID() {
+     // Test with second person
+        String result2 = q.patientByID(id2);
+        String its2 = Integer.toString(id2);
+        String target2 = its2 + del + firstName2 + del + lastName2 + 
+                del + gender2 + del + dob2;
+        System.out.println("Target string = " + target2);
+        System.out.println("Result string = " + result2);
+        assertTrue(target2.equals(result2));
+        
     }
 
     @Test

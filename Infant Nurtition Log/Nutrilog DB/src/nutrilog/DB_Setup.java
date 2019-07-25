@@ -42,9 +42,9 @@ public class DB_Setup{
             
             // Create Application User table
             
-            sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL,"
-                    + "    UserName VARCHAR(255) NOT NULL,"
-                    + "    Password VARCHAR(255) NOT NULL"
+            sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL, "
+                    + "    UserName VARCHAR(255) NOT NULL, "
+                    + "    Password VARCHAR(255) NOT NULL "
 
 //                    + "    PRIMARY KEY (ID),"
 //                    + "    FOREIGN KEY (ID) REFERENCES Person(Id)" 
@@ -55,10 +55,10 @@ public class DB_Setup{
             // Create Patient table
             
             sql = "CREATE TABLE Patient("
-                    + "    ID INTEGER NOT NULL,"
-                    + "    LastName VARCHAR(255),"
-                    + "    Weight FLOAT "
-//                    + "    PRIMARY KEY (ID),\r\n"
+                    + "    ID INTEGER NOT NULL, "
+                    + "    LastName VARCHAR(255), "
+                    + "    Weight FLOAT, "
+                    + "    PRIMARY KEY (ID)"
 //                    + "    FOREIGN KEY (ID) REFERENCES Person (ID)\r\n"
                     + ")";
             stmt.executeUpdate(sql);
