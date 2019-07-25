@@ -18,6 +18,14 @@ public class QueryTest {
     String UserName;
     String password;
     double weight;
+    int id2;
+    String firstName2;
+    String lastName2;
+    String gender2;
+    String dob2;
+    String UserName2;
+    String password2;
+    double weight2;
     
     
     
@@ -25,12 +33,19 @@ public class QueryTest {
     @Before
     public void setUp() throws Exception {
         id = 9000;
-        firstName = "Maxine";
-        lastName = "Pane";
+        firstName = "Jessica";
+        lastName = "Jones";
         gender = "F";
-        dob = "1997/03/04";
-        UserName = "max";
-        password = "password";
+        dob = "1992/03/04";
+        UserName = "Jewel";
+        password = "?1337P@55w()rd!";
+        id2 = 7000;
+        firstName2 = "Luke";
+        lastName2 = "Cage";
+        gender2 = "M";
+        dob2 = "1987/07/14";
+        UserName2 = "LCage";
+        password2 = "Jessica";
 
         
         
@@ -41,7 +56,8 @@ public class QueryTest {
         q = new Query();
         pfc = new PersonFunctionController();
         pfc.addPatient(id, firstName, lastName, gender, dob);
-        pfc.addUser(90001, firstName, lastName, UserName, password);
+        pfc.addPatient(id2, firstName2, lastName2, gender2, dob2);
+//        pfc.addUser(90001, firstName, "poe", UserName, password);
               
     }
     
@@ -59,14 +75,12 @@ public class QueryTest {
         String result = q.patientByName(lastName);
         String its = Integer.toString(id);
         String del = ", ";
-        
-        assertTrue(result.contains(firstName));
-        assertTrue(result.contains(lastName));
-//        assertTrue(result.contains(s));
-//        assertTrue(result.contains(gender));
-//        assertTrue(result.contains(dob));
-        String target =firstName + del + lastName;
+        String target = its + del + firstName + del + lastName + 
+                del + gender + del + dob;
+        System.out.println("Target string is");
+        System.out.println(target);
         assertTrue(target.equals(result));
+
     }
 
 

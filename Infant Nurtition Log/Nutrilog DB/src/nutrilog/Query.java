@@ -7,35 +7,53 @@ import java.sql.Statement;
 
 public class Query extends DB_Controller {
     Connection conn = super.connect();
+    String del = ", ";
+    String resultString = "fail";
 
 
     
     public String patientByName(String lastName) {
-        String first = null;
-        String last = null;
-        StringBuilder sb = new StringBuilder();
+
+        
         try {
             
             String sql =""
                     + "SELECT "
-                    + "PersonID, Person.FirstName, Patient.LastName "
+                    + "Person.ID, Person.FirstName, Person.lastname, "
+                    + "Person.gender, person.dob, Patient.LastName "
                     + "FROM "
                     + "person "
                     + "LEFT JOIN "
-                    + "patient ON Person.LastName = Patient.LastName";
+                    + "patient patient USING (ID)"
+                    + "WHERE "
+                    + "Person.lastname = patient.lastname ";
+                    
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
+            
             while(rs.next()) {
-                String del = ", ";
-//                sb.append(rs.getInt("Person.ID"));
-                sb.append(first = rs.getString("Person.FirstName"));
-                sb.append(del);
-                sb.append(last = rs.getString("Patient.LastName"));
+
+                
+                int temp = rs.getInt("id");
+                String id = Integer.toString(temp);
+                String first = rs.getString("FirstName");
+                String last = rs.getString("LastName");
+                String gender = rs.getString("gender");
+                String DOB = rs.getString("dob");
+                
+                
+                
+                resultString =id + del+ first + del + last + del
+                        + gender + del + DOB;
             }
+            stmt.close();
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } 
-        String resultString =sb.toString();
+        
+        System.out.println("ResultString is:");
+        System.out.println(resultString);
         return (resultString );
     }
     public boolean patientByID() {

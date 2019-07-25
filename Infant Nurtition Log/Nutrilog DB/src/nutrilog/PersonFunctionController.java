@@ -34,12 +34,13 @@ public class PersonFunctionController extends DB_Controller  {
         
         try {
             String sql = "INSERT INTO Person(id, FirstName, LastName)" + 
-                    "VALUES (?, ?, ?)";
+                    "VALUES (?, ?, ?)"
+                    + "WHERE ID = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, ID);
             stmt.setString(2, first);
             stmt.setString(3, last);
-            
+            stmt.setInt(4, ID);
             stmt.executeUpdate();
 
             // rows affected
