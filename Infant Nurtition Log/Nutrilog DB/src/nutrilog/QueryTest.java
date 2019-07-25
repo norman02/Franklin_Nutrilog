@@ -34,10 +34,11 @@ public class QueryTest {
 
         
         
-        q = new Query();
+        
         data = new DB_Setup();
         data.create();
         data.init();
+        q = new Query();
         pfc = new PersonFunctionController();
         pfc.addPatient(id, firstName, lastName, gender, dob);
         pfc.addUser(90001, firstName, lastName, UserName, password);
@@ -56,15 +57,19 @@ public class QueryTest {
     @Test
     public void testPatientByName() {
         String result = q.patientByName(lastName);
-        String s = Integer.toString(id);
+        String its = Integer.toString(id);
+        String del = ", ";
+        
         assertTrue(result.contains(firstName));
         assertTrue(result.contains(lastName));
 //        assertTrue(result.contains(s));
 //        assertTrue(result.contains(gender));
 //        assertTrue(result.contains(dob));
-//        assertTrue(result.contains(UserName));
-//        assertTrue(result.contains(password));
+        String target =firstName + del + lastName;
+        assertTrue(target.equals(result));
     }
+
+
 
     @Test
     public void testPeopleByID() {

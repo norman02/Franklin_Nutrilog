@@ -80,11 +80,12 @@ public class PersonFunctionController extends DB_Controller  {
                 stmt.executeUpdate();
                 
                 String sql2= ""
-                        + "INSERT INTO patient(ID)"
-                        + "VALUES (?)";
+                        + "INSERT INTO patient(ID, LastName)"
+                        + "VALUES (?, ?)";
                 
                 stmt = conn.prepareStatement(sql2);
                 stmt.setInt(1, id);
+                stmt.setString(2, lastName);
                 stmt.executeUpdate();
 
                 // rows affected
