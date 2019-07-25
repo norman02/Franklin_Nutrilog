@@ -29,8 +29,6 @@ public class DB_Setup{
             // Execute a query
             stmt = conn.createStatement();
             // Create Person Table
-            System.out
-                    .println("Creating table person in Nutrilog_data...");
             sql = "CREATE TABLE Person(" 
                     + "    ID INTEGER NOT NULL,"
                     + "    FirstName VARCHAR(255)NOT NULL,"
@@ -41,11 +39,9 @@ public class DB_Setup{
                     + "    PRIMARY KEY(ID)" 
                     + ")";
             stmt.executeUpdate(sql);
-            System.out.println(
-                    "Succesfully created person in Nutrilog_data");
+            
             // Create Application User table
-            System.out
-                    .println("Creating table AppUser in Nutrilog_data...");
+            
             sql = "CREATE TABLE AppUser(" + "    ID INTEGER NOT NULL,"
                     + "    UserName VARCHAR(255) NOT NULL,"
                     + "    Password VARCHAR(255) NOT NULL"
@@ -55,11 +51,9 @@ public class DB_Setup{
                     + ")"
                     ;
             stmt.executeUpdate(sql);
-            System.out.println(
-                    "Succesfully created AppUser in Nutrilog_data");
+           
             // Create Patient table
-            System.out
-                    .println("Creating table Patient in Nutrilog_data...");
+            
             sql = "CREATE TABLE Patient("
                     + "    ID INTEGER NOT NULL,"
                     + "    Weight FLOAT "
@@ -67,10 +61,9 @@ public class DB_Setup{
 //                    + "    FOREIGN KEY (ID) REFERENCES Person (ID)\r\n"
                     + ")";
             stmt.executeUpdate(sql);
-            System.out.println(
-                    "Succesfully created Patient in Nutrilog_data");
+            
             // Create Event table
-            System.out.println("Creating table Event in Nutrilog_data...");
+            
             sql = "CREATE TABLE Event(\r\n"
                     + "    EventNum INTEGER NOT NULL,\r\n"
                     + "    ID INTEGER NOT NULL,\r\n"
@@ -82,8 +75,7 @@ public class DB_Setup{
  //                   + "    ,FOREIGN KEY (ID) REFERENCES Patient(ID)\r\n"
                     + ")";
             stmt.executeUpdate(sql);
-            System.out.println(
-                    "Succesfully created Event in Nutrilog_data");
+            
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,15 +97,15 @@ public class DB_Setup{
      */
     boolean create() {
         try {
-            System.out.println("Connecting to the database...");
+            
             conn = connect(DB_URL, USER, PASS);
-            System.out.println("Succesfully connected to database");
+            
             // Execute a query
             stmt = conn.createStatement();
-            System.out.println("Creating databas Nutrilog_data...");
+            
             String sql = "CREATE DATABASE NUTRILOG_DATA";
             stmt.executeUpdate(sql);
-            System.out.println("Succesfully created Nutrilog_data");
+            
             return true;
         } catch (SQLException e) {
             
@@ -121,10 +113,9 @@ public class DB_Setup{
         } finally {
             // close resources
             try {
-                System.out.println("DB_Setup.Create() is "
-                        + "closing connection...");
+                
                 conn.close();
-                System.out.println("connection closed");
+                
             } catch (SQLException e) {
                 
                 e.printStackTrace();
@@ -142,15 +133,12 @@ public class DB_Setup{
      */
     boolean dropDatabase(){
         try {
-            System.out.println("Connecting to the database...");
-            conn = connect(DB_URL, USER, PASS);
-            System.out.println("Succesfully connected to database");
+            
+            conn = connect(DB_URL, USER, PASS);            
             // Execute a query
             stmt = conn.createStatement();
             String sql = "DROP DATABASE Nutrilog_Data";
-            System.out.println("deleting database 'Nutrilog_data'...");
             stmt.executeUpdate(sql);
-            System.out.println("database deleted");
             return true;
         } catch (SQLException e) {
             
@@ -165,7 +153,7 @@ public class DB_Setup{
     }
 
     private void close() {
-        System.out.println("Closing connection...");
+        
         try {
             if (stmt != null)
                 conn.close();
@@ -177,7 +165,7 @@ public class DB_Setup{
         } catch (SQLException se) {
             se.printStackTrace();
         } // end close resources
-        System.out.println("connection closed");
+        
     }
 
     private Connection connect(String url, String user, String password) {

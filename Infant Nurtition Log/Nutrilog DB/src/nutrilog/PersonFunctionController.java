@@ -114,14 +114,11 @@ public class PersonFunctionController extends DB_Controller  {
                
         
         try {
-            System.out.println("Inserting data into person...");
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, Id);
             stmt.setString(2, firstName);
             stmt.setString(3, lastName);
             stmt.executeUpdate();
-            System.out.println("data successfully inserted");
-            System.out.println("pfc.addUser() inserting data into appUser");
             String sql2 = ""
             + "INSERT INTO AppUser(id, username, password)"
             + "VALUES (?, ?, ?);";
@@ -131,7 +128,6 @@ public class PersonFunctionController extends DB_Controller  {
             stmt.setString(3, password);
 
             stmt.executeUpdate();
-            System.out.println("data successfully inserted");
             
             return true;
         } catch (SQLException e) {

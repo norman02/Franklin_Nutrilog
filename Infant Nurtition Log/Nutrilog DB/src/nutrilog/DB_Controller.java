@@ -31,8 +31,7 @@ public class DB_Controller {
      */
     Connection connect() {
 
-        System.out.println("DB_Controller.connect() is connecting to the "
-                + "database...");
+
         try {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -42,14 +41,13 @@ public class DB_Controller {
 
             e.printStackTrace();
         }
-        System.out.println("Connection succesful");
+
         return conn;
     }
     Connection connect(String url) {
         String db_url = url;
 
-        System.out.println("DB_Controller.connect() is connecting to the "
-                + "database...");
+
         try {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -59,11 +57,11 @@ public class DB_Controller {
 
             e.printStackTrace();
         }
-        System.out.println("Connection succesful");
+
         return conn;
     }
     boolean close() {
-        System.out.println("DB_Controller.Close is closing connection...");
+
         try {
             
             if (stmt != null)
@@ -73,7 +71,7 @@ public class DB_Controller {
         try {
             if (conn != null)
                 conn.close();
-            System.out.println("connection closed");
+
             return true;
         } catch (SQLException se) {
             se.printStackTrace();
