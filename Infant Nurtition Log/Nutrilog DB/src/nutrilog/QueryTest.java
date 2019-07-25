@@ -27,6 +27,9 @@ public class QueryTest {
     String password2;
     double weight2;
     String del = ", ";
+    static EventFunctionController efc;
+    static double unit;
+
     
     
     
@@ -47,6 +50,7 @@ public class QueryTest {
         dob2 = "1987-07-14";
         UserName2 = "LCage";
         password2 = "Jessica";
+        unit = 22.6;
 
         
         
@@ -58,6 +62,11 @@ public class QueryTest {
         pfc = new PersonFunctionController();
         pfc.addPatient(id, firstName, lastName, gender, dob);
         pfc.addPatient(id2, firstName2, lastName2, gender2, dob2);
+        
+        efc = new EventFunctionController();
+        efc.logFeeding(id, dob, unit );
+        efc.logChanging(id2, dob2, false, true);
+//        efc.logWeight(id, dob, unit);
 
               
     }
@@ -81,9 +90,6 @@ public class QueryTest {
         
         
     }
-
-
-
     @Test
     public void testPatientByID() {
      // Test with second person
@@ -91,20 +97,36 @@ public class QueryTest {
         String its2 = Integer.toString(id2);
         String target2 = its2 + del + firstName2 + del + lastName2 + 
                 del + gender2 + del + dob2;
-        System.out.println("Target string = " + target2);
-        System.out.println("Result string = " + result2);
-        assertTrue(target2.equals(result2));
-        
+        assertTrue(target2.equals(result2));        
     }
 
     @Test
     public void testEventById() {
-        assertTrue(q.eventById());
+        String result = q.eventById(id);
+        String its = Integer.toString(id);
+        String target = its + del + lastName + del + "Feeding" + del + unit;
+        System.out.println("Target string is: " + target);
+        System.out.println("Result string is: " + result);
+        assertTrue(target.equals(result));       
+    }
+    @Test
+    public void testEventByIdArray() {
+        //TODO make 2 dimensional test       
     }
 
     @Test
     public void testEventByName() {
-        assertTrue(q.eventByName());
+        String result = q.eventByName(lastName2);
+        String its = Integer.toString(id2);
+        String target = its + del + lastName2 + del + "Changed";
+        System.out.println("Target string is: " + target);
+        System.out.println("Result string is: " + result);
+        assertTrue(target.equals(result));       
+    }
+
+    @Test
+    public void testEventByNameArray() {
+        //TODO
     }
 
 }

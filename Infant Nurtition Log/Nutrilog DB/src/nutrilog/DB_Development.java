@@ -23,6 +23,9 @@ public class DB_Development {
     static String dob;
     static String UserName;
     static String Password;
+    static String feeding;
+    static String changing;
+    static String weighing;
     
     /**
      * @param args
@@ -52,6 +55,7 @@ public class DB_Development {
         efc.logFeeding(PersonId, dob, unit );
         efc.logChanging(PersonId, dob, false, true);
         efc.logWeight(PersonId, dob, unit);
+        System.out.println("Nutrilog initialized");
 
     }
 }

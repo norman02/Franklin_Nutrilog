@@ -96,25 +96,75 @@ public class Query extends DB_Controller {
         
         return (resultString );
     }
-    public boolean eventById() {
-//        try {
-//            stmt = conn.createStatement();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            close();
-//        }
-        return true;
+    public String eventById(int id) {
+
+        
+        try {
+            
+            String sql =""
+                    + "SELECT "
+                    + "Person.ID, Person.lastname, event.EventName,"
+                    + "event.FoodUnit  "
+                    + "FROM "
+                    + "person "
+                    + "LEFT JOIN "
+                    + "Event USING(ID) "
+                    + "WHERE person.id = '"
+                    +  id +"';";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()) {
+                String ID = Integer.toString(rs.getInt("id"));               
+                String last = rs.getString("LastName");
+                String eName = rs.getString("EventName"); 
+                String unit = Double.toString(rs.getDouble("FoodUnit"));
+                
+                resultString = ID + del + last + del + eName + del + unit ;
+                }
+            stmt.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        
+        
+        return (resultString );
     }
-    public boolean eventByName() {
-//        try {
-//            stmt = conn.createStatement();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            close();
-//        }
-        return true;
+    public String eventByName(String lastName) {
+
+        
+        try {
+            
+            String sql =""
+                    + "SELECT "
+                    + "Person.ID, Person.lastname, event.EventName,"
+                    + "event.FoodUnit  "
+                    + "FROM "
+                    + "person "
+                    + "LEFT JOIN "
+                    + "Event USING(ID) "
+                    + "WHERE person.lastname = '"
+                    +  lastName +"';";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()) {
+                String ID = Integer.toString(rs.getInt("id"));               
+                String last = rs.getString("LastName");
+                String eName = rs.getString("EventName"); 
+                String unit = Double.toString(rs.getDouble("FoodUnit"));
+                
+                resultString = ID + del + last + del + eName;
+                }
+            stmt.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        
+        
+        return (resultString );
     }
 
 }
