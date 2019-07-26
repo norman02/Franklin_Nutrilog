@@ -87,8 +87,10 @@ public class QueryTest {
         String target = its + del + firstName + del + lastName + 
                 del + gender + del + dob;    
         assertTrue(target.equals(result));
-        
-        
+        }
+    @Test
+    public void testPatientByNameArray() {
+        fail("not implemented");
     }
     @Test
     public void testPatientByID() {
@@ -111,7 +113,7 @@ public class QueryTest {
     }
     @Test
     public void testEventByIdArray() {
-        //TODO make 2 dimensional test       
+        fail("not implemented");       
     }
 
     @Test
@@ -126,7 +128,7 @@ public class QueryTest {
 
     @Test
     public void testEventByNameArray() {
-        //TODO
+        fail("not implemented");
     }
 
 }
