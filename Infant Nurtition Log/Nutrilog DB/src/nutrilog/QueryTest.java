@@ -65,7 +65,7 @@ public class QueryTest {
         
         efc = new EventFunctionController();
         efc.logFeeding(id, dob, unit );
-        efc.logChanging(id2, dob2, false, true);
+//        efc.logChanging(id2, dob2, false, true);
 //        efc.logWeight(id, dob, unit);
 
               
@@ -90,7 +90,8 @@ public class QueryTest {
         }
     @Test
     public void testPatientByNameArray() {
-        fail("not implemented");
+        fail("not implemented"); 
+        
     }
     @Test
     public void testPatientByID() {
@@ -107,13 +108,19 @@ public class QueryTest {
         String result = q.eventById(id);
         String its = Integer.toString(id);
         String target = its + del + lastName + del + "Feeding" + del + unit;
-        System.out.println("Target string is: " + target);
-        System.out.println("Result string is: " + result);
         assertTrue(target.equals(result));       
     }
     @Test
     public void testEventByIdArray() {
-        fail("not implemented");       
+        String target ="Target string is: 7000, Cage, Changed\r\n" + 
+                "Result string is: 7000, Cage, Changed\r\n" + 
+                "Target string is: 9000, Jones, Feeding, 22.6\r\n" + 
+                "Result string is: 9000, Jones, weight, 0.0";
+        String result = q.eventById(id);
+        System.out.println("Target String is " + target);
+        System.out.println("Result String is " + result);
+        assertTrue(target.equals(result));
+              
     }
 
     @Test
@@ -121,8 +128,6 @@ public class QueryTest {
         String result = q.eventByName(lastName2);
         String its = Integer.toString(id2);
         String target = its + del + lastName2 + del + "Changed";
-        System.out.println("Target string is: " + target);
-        System.out.println("Result string is: " + result);
         assertTrue(target.equals(result));       
     }
 

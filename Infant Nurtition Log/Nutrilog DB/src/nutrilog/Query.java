@@ -97,6 +97,7 @@ public class Query extends DB_Controller {
         return (resultString );
     }
     public String eventById(int id) {
+        
 
         
         try {
