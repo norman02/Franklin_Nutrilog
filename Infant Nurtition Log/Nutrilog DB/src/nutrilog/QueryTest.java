@@ -29,6 +29,8 @@ public class QueryTest {
     String del = ", ";
     static EventFunctionController efc;
     static double unit;
+    boolean stool;
+    boolean urine;
 
     
     
@@ -51,6 +53,8 @@ public class QueryTest {
         UserName2 = "LCage";
         password2 = "Jessica";
         unit = 22.6;
+        stool = false;
+        urine = true;
 
         
         
@@ -65,8 +69,10 @@ public class QueryTest {
         
         efc = new EventFunctionController();
         efc.logFeeding(id, dob, unit );
-//        efc.logChanging(id2, dob2, false, true);
-//        efc.logWeight(id, dob, unit);
+
+        efc.logChanging(id2, dob2, stool, urine);
+        efc.logChanging(id, dob, stool, urine);
+        efc.logWeight(id, dob, unit);
 
               
     }
@@ -82,17 +88,20 @@ public class QueryTest {
     }
     @Test
     public void testPatientByName() {
+        
+        pfc.addPatient(2234, "Davey", "Jones", "O", "1920-12-12");
+        pfc.addPatient(2277, "Martha", "Jones", "F", "1958-12-12");
+        String target = "9000, Jessica, Jones, F, 1992-03-04, Jones,"
+                + " 2277, Martha, Jones, F, 1958-12-12"
+                + "2234, Davey, Jones, O, 1920-12-12" ;
         String result = q.patientByName(lastName);
-        String its = Integer.toString(id);
-        String target = its + del + firstName + del + lastName + 
-                del + gender + del + dob;    
+        System.out.println("Target string is...");
+        System.out.println(target);
+        System.out.println("Result string is...");
+        System.out.println(result);
+        
         assertTrue(target.equals(result));
         }
-    @Test
-    public void testPatientByNameArray() {
-        fail("not implemented"); 
-        
-    }
     @Test
     public void testPatientByID() {
      // Test with second person
@@ -105,35 +114,24 @@ public class QueryTest {
 
     @Test
     public void testEventById() {
+        String target = "9000, Jones, Feeding, 22.6, null, null, null"
+                + ", 1992-03-04, 9000, Jones, Changed, null, 1, 0, null"
+                + ", 1992-03-04, 9000, Jones, weight, null, null, null, 22.6"
+                + ", 1992-03-04, ";
         String result = q.eventById(id);
-        String its = Integer.toString(id);
-        String target = its + del + lastName + del + "Feeding" + del + unit;
-        assertTrue(target.equals(result));       
-    }
-    @Test
-    public void testEventByIdArray() {
-        String target ="Target string is: 7000, Cage, Changed\r\n" + 
-                "Result string is: 7000, Cage, Changed\r\n" + 
-                "Target string is: 9000, Jones, Feeding, 22.6\r\n" + 
-                "Result string is: 9000, Jones, weight, 0.0";
-        String result = q.eventById(id);
-        System.out.println("Target String is " + target);
-        System.out.println("Result String is " + result);
-        assertTrue(target.equals(result));
+        assertEquals(target,result);
               
     }
 
     @Test
-    public void testEventByName() {
-        String result = q.eventByName(lastName2);
-        String its = Integer.toString(id2);
-        String target = its + del + lastName2 + del + "Changed";
-        assertTrue(target.equals(result));       
-    }
-
-    @Test
     public void testEventByNameArray() {
-        fail("not implemented");
+        String target = "9000, Jones, Feeding, 22.6, null, null, null"
+                + ", 1992-03-04, 9000, Jones, Changed, null, 1, 0, null"
+                + ", 1992-03-04, 9000, Jones, weight, null, null, null, 22.6"
+                + ", 1992-03-04, ";
+        String result = q.eventByName(lastName);
+        assertEquals(target, result);
+              
     }
 
 }

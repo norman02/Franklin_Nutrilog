@@ -1,5 +1,7 @@
 package nutrilog;
 
+import static org.junit.Assert.assertTrue;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,23 +43,9 @@ public class DB_Development extends DB_Controller {
         efc = new EventFunctionController();
 
         setup = new DB_Setup();
-        PersonId = 10001;
-        FirstName = "Maxine";
-        LastName = "Powers";
-        patientId = 3000;
-        gender = "F";
-        dob = "1999-12-31";
-        UserName = "MaxPower";
-        Password = "1337!P@s5w0rd!";
         setup.dropDatabase();
         setup.create();
-        setup.init();
-        pfc.addPatient(patientId, FirstName, LastName, gender, dob);
-        pfc.addUser(PersonId, FirstName, LastName, UserName, Password);
-        double unit = 40.2;
-        efc.logFeeding(PersonId, dob, unit);
-        efc.logChanging(PersonId, dob, false, true);
-        efc.logWeight(PersonId, dob, unit);
+        setup.init();       
         System.out.println("Nutrilog initialized");
         // JDBC driver name and database URL
         final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -68,77 +56,26 @@ public class DB_Development extends DB_Controller {
         final String PASS = "";
         Connection conn = null;
         Statement stmt = null;
-
-        // query to display all records from table Patient
-        String q = "Select * from Event";
-
-//            try {
-//                //to execute query
-//                Class.forName("com.mysql.cj.jdbc.Driver");
-//                // Open a connection
-//                conn = DriverManager.getConnection(DB_URL, USER, PASS);
-//                Statement smt = conn.createStatement();
-//                ResultSet rs=smt.executeQuery(q);
-//                
-//                //to print the resultset on console
-//                if(rs.next()){ 
-//                    do{
-//                    System.out.println(
-//                            rs.getString(1)
-//                            +","+rs.getString(2)+
-//                            ","+rs.getString(3)
-//                            +","
-//                            +rs.getString(4)+","
-//                            +rs.getString(5)
-//                            +rs.getString(6)+","
-//                            +rs.getString(7)+","
-//                            +rs.getString(8)+","
-//                            );
-//                    }while(rs.next());
-//                }
-//                else{
-//                    System.out.println("Record Not Found...");
-//                }
-//                conn.close();
-//            } catch (SQLException | ClassNotFoundException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-
-        try {
-            // to execute query
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Open a connection
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement smt = conn.createStatement();
-            ResultSet rs = smt.executeQuery(q);
-            String del = ", ";
-            // to print the resultset on console
-            StringBuilder sb = new StringBuilder();
-            if (rs.next()) {
-                do {
-                    sb.append(rs.getString(1)+del);
-                    sb.append(rs.getString(2)+del);
-                    sb.append(rs.getString(3)+del);
-                    sb.append(rs.getString(4)+del);
-                    sb.append(rs.getString(5)+del);
-                    sb.append(rs.getString(6)+del);
-                    sb.append(rs.getString(7)+del);
-                    sb.append(rs.getString(8)+del);
-                    sb.append("\n");
-                } while (rs.next());
-                System.out.print(sb);
-            }
-
-            else {
-                System.out.println("Record Not Found...");
-            }
-            conn.close();
-        } catch (SQLException | ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+        
+        //BEGIN WTF
+        testPatientByNameWTF();
+        //END WTF
+        
     }
+    static void testPatientByNameWTF() {
+        Query q = new Query();
+        String result = q.patientByName("Jones");
+        pfc.addPatient(2234, "Davey", "Jones", "O", "1920-12-12");
+        pfc.addPatient(2277, "Martha", "Jones", "F", "1958-12-12");
+        String target = "9000, Jessica, Jones, F, 1992-03-04, Jones,"
+                + " 2277, Martha, Jones, F, 1958-12-12"
+                + "2234, Davey, Jones, O, 1920-12-12" ;
+        System.out.println("Target string is...");
+        System.out.println(target);
+        System.out.println("Result string is...");
+        System.out.println(result);
+        
+        
+        }
 
 }
