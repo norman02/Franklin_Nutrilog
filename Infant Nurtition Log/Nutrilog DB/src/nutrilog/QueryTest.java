@@ -91,9 +91,9 @@ public class QueryTest {
         
         pfc.addPatient(2234, "Davey", "Jones", "O", "1920-12-12");
         pfc.addPatient(2277, "Martha", "Jones", "F", "1958-12-12");
-        String target = "9000, Jessica, Jones, F, 1992-03-04, Jones,"
-                + " 2277, Martha, Jones, F, 1958-12-12"
-                + "2234, Davey, Jones, O, 1920-12-12" ;
+        String target = "2234, Davey, Jones, O, 1920-12-12, "
+                + "2277, Martha, Jones, F, 1958-12-12, "
+                + "9000, Jessica, Jones, F, 1992-03-04, " ;
         String result = q.patientByName(lastName);
         System.out.println("Target string is...");
         System.out.println(target);

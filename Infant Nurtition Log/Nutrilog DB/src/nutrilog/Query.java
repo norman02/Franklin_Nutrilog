@@ -14,6 +14,16 @@ public class Query extends DB_Controller {
     
     public String patientByName(String lastName) {
         try {
+//          String sql =""
+//          + "SELECT "
+//          + "Person.ID, Person.FirstName, Person.lastname, "
+//          + "Person.gender, person.dob "
+//          + "FROM "
+//          + "person "
+//          + "LEFT JOIN "
+//          + "patient USING (lastname) "
+//          + "WHERE lastName = '"
+//          +  lastName +"';";
             
             String sql =""
                     + "SELECT "
@@ -21,8 +31,6 @@ public class Query extends DB_Controller {
                     + "Person.gender, person.dob "
                     + "FROM "
                     + "person "
-                    + "LEFT JOIN "
-                    + "patient USING (lastname) "
                     + "WHERE lastName = '"
                     +  lastName +"';";
             stmt = conn.createStatement();
