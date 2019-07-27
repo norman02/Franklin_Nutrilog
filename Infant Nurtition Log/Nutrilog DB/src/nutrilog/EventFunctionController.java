@@ -1,18 +1,39 @@
 package nutrilog;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-
+/**
+ * The event function controllers updates the event table in the Nutrilog
+ * database.
+ * @author John Norman
+ * @version 2019-7-27
+ *
+ */
 public class EventFunctionController extends DB_Controller {
+    /**
+     * String used to hold SQL commands
+     */
     String sql;
+    /**
+     * starting value for the event number
+     */
     int number = 100000;
+    /**
+     * A connection to the database
+     */
     Connection conn = super.connect();
-    PreparedStatement stmt;
-    
-    boolean logFeeding(int id, String date, double unit) {
-        
+    /**
+     * A prepared statement used for SQL queries
+     */
+    PreparedStatement stmt;    
+    /**
+     * Inserts a feeding event into the event table
+     * @param id - patient id number
+     * @param date - date of the feeding
+     * @param unit - amount of food given in milliliters
+     * @return boolean representing successful insertion
+     */
+    boolean logFeeding(int id, String date, double unit) {       
         try {
             sql = "     INSERT INTO Event"
                     +   "(EventNum, EventName, EventDate, FoodUnit, id)"
@@ -30,10 +51,17 @@ public class EventFunctionController extends DB_Controller {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        
+        }       
         return false;
     }
+    /**
+     * Inserts a changing event into event table
+     * @param id - patient id number
+     * @param date - date of changing
+     * @param urine - boolean representing if urine present
+     * @param stool - boolean representing if stool present
+     * @return boolean representing if insert successful
+     */
     boolean logChanging(int id, String date, boolean urine, boolean stool) {
         try {
             sql = "INSERT INTO Event("
@@ -55,6 +83,13 @@ public class EventFunctionController extends DB_Controller {
         }
         return false;
     }
+    /**
+     * Insert a weighing event into event table
+     * @param id - patient id number
+     * @param date - date of weighing
+     * @param weight - patient weight in kilograms
+     * @return boolean representing if insert successful 
+     */
     boolean logWeight(int id, String date, double weight) {
         try {
             sql = "INSERT INTO Event("
@@ -70,11 +105,9 @@ public class EventFunctionController extends DB_Controller {
             stmt.executeUpdate();
             number++;
             return true;
-        } catch (SQLException e) {
-            
+        } catch (SQLException e) {            
             e.printStackTrace();
         } 
         return false;
     }
-
 }
