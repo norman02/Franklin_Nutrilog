@@ -8,14 +8,20 @@ import org.junit.Test;
 
 public class DB_ControllerTest {
     DB_Controller d;
+    DB_Setup data;
 
     @Before
     public void setUp() throws Exception {
         d = new DB_Controller();
+        data = new DB_Setup();
+        data.create();
+        data.init();
+        
     }
 
     @After
     public void tearDown() throws Exception {
+        data.dropDatabase();
     }
 
     @Test

@@ -6,64 +6,77 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * The database controller establishes a connection to the 
- * Nutrilog database
+ * The database controller controls the connection to the Nutrilog database. 
  * @author John Norman
+ * @version 2019-7-27
  *
  */
 public class DB_Controller {
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/Nutrilog_Data";
-
-    // Database credentials
-    static final String USER = "root";
-    static final String PASS = "";
-    Connection conn = null;
-    Statement stmt = null;
-    
-    DB_Controller(){
-        //Default
-    }
     /**
-     * Establishes a connection to the database
+     * Path to Java Database Connection driver
+     */
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    /**
+     * Path to the Nutrilog database
+     */
+    static final String DB_URL = "jdbc:mysql://localhost/Nutrilog_Data";
+    /**
+     * Username for database
+     */
+    static final String USER = "root";
+    /**
+     * User password for database
+     */
+    static final String PASS = "";
+    /**
+     * A connection to the database
+     */
+    Connection conn = null;
+    /**
+     * A statement for use in executing SQL queries. 
+     */
+    Statement stmt = null;
+    /**
+     * Establish the connection to the Nutrilog database
      * @return the connection
      */
     Connection connect() {
-
-
         try {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Open a connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (ClassNotFoundException | SQLException e) {
-
             e.printStackTrace();
         }
-
         return conn;
     }
+    /**
+     * Overload for connection method allows for a new URL to be used in 
+     * the connection. 
+     * @param url - new path to the database
+     * @return the connection
+     */
     Connection connect(String url) {
         String db_url = url;
-
-
         try {
             // Register JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Open a connection
             conn = DriverManager.getConnection(db_url, USER, PASS);
         } catch (ClassNotFoundException | SQLException e) {
-
             e.printStackTrace();
         }
-
         return conn;
     }
+    /**
+     * Closes the resources used, the connection and the statement invoked in 
+     * the connect methods. 
+     * @return A boolean representing if the resources are successfully closed.
+     */
     boolean close() {
-
-        try {
-            
+        try {        
             if (stmt != null)
                 stmt.close();
         } catch (SQLException se) {
@@ -71,13 +84,11 @@ public class DB_Controller {
         try {
             if (conn != null)
                 conn.close();
-
             return true;
         } catch (SQLException se) {
             se.printStackTrace();
         } // end close resources
         return false;
     }
-
 }
 
