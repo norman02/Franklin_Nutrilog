@@ -8,18 +8,18 @@
 -->
 <html>
 	<head>
-		<title>Infant Nutrition Log - Log an Event</title>
+		<title>Infant Nutrition Log</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 
 		<!-- Header -->
 			<header id="header">
-				<a class="logo" href="index.jsp">Infant Nutrition Log</a>
+				<a class="logo" href="../index.jsp">Infant Nutrition Log</a>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
@@ -28,9 +28,9 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="index.jsp">Home</a></li>
+					<li><a href="../index.jsp">Home</a></li>
 					<li><a href="nutrilog/registration.jsp">Register a Baby</a></li>
-					<li><a href="search.jsp">Search for a Baby</a></li>
-                                        <li><a href="event.jsp">Log an Event</a></li>
+					<li><a href="nutrilog/search.jsp">Search for a Baby</a></li>
+                                        <li><a href="nutrilog/event.jsp">Log an Event</a></li>
 				</ul>
 			</nav>

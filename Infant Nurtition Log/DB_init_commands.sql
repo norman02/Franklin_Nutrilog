@@ -1,0 +1,44 @@
+DROP DATABASE NutrilogDB;
+CREATE DATABASE NutrilogDB;
+USE NutrilogDB;
+
+DROP TABLE Person;
+CREATE TABLE Person(
+	ID INTEGER NOT NULL AUTO_INCREMENT,
+	FirstName VARCHAR(255)NOT NULL,
+	LastName VARCHAR(255) NOT NULL,
+	Gender CHAR,
+	DOB DATE,
+    TOB VARCHAR(10),
+    BirthWeight VARCHAR(50),
+	PRIMARY KEY(ID) 
+);
+
+DROP TABLE AppUser;
+CREATE TABLE AppUser(
+	ID INTEGER NOT NULL,
+	UserName VARCHAR(255) NOT NULL,
+	Password VARCHAR(255) NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (ID) REFERENCES Person(Id)
+);
+
+Drop TABLE Event;
+CREATE TABLE Event(
+	EventNum INTEGER NOT NULL auto_increment,
+	ID INTEGER NOT NULL,
+	FoodAmount INTEGER,
+    FoodUnits ENUM ('','Minutes','Milliliters','Ounces'),
+	Urine BOOLEAN,
+	Stool BOOLEAN,
+	Weight VARCHAR(50),
+	EventDate DATE NOT NULL,
+    EventTime VARCHAR(10),
+	PRIMARY KEY (EventNum),
+	FOREIGN KEY (ID) REFERENCES Person(ID)
+);
+
+
+
+
+

@@ -8,14 +8,14 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div class="content">
-                                            <form action="registration" method="post">
-                                                <input type="hidden" name="action" value="addPerson"/>
+                                            <h3>Please Enter Information</h3>
+                                            <form action="registration.jsp" method="post">
 						First Name <input name="firstName"/><br />
 						Last Name <input name="lastName"/><br />
 						Birth Date <input type="date" name="dob"/><br />
                                                 Gender <input name="gender"/><br />
-						Birth Time <input type="time"/><br />
-						Weight <input />lbs <input /> oz<br /><br />
+						Birth Time <input type="time" name="tob"/><br />
+						Weight <input name="pounds"/>lbs <input name="ounces"/> oz<br /><br />
                                                 <input type="submit" value="Register">
                                             </form>
 					</div>

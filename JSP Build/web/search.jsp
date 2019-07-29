@@ -8,14 +8,18 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div class="content">
+                                            <form action="results.jsp" method="get">
 						<h3>Search by Last Name</h3>
-						<input />
-						<br />
-						<button>Search</button>
+						<input name="searchValue"/><br />
+						<input type="submit" value="Search">
+                                            </form>
+                                            <br />
+                                            <form action="information.jsp" method="get">
 						<h3>Search by Registration Number</h3>
-						<input />
+						<input name="searchValue"/>
 						<br />
-						<button>Search</button>
+						<input type="submit" value="Search">
+                                            </form>
 					</div>
 				</div>
 			</section>
