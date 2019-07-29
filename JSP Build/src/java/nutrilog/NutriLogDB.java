@@ -136,7 +136,7 @@ public class NutriLogDB {
         Event lastChanged = new Event();
         Event lastWeighed = new Event();
         
-        String sql = "SELECT * FROM Event WHERE EventNum = " + searchValue;
+        String sql = "SELECT * FROM Event WHERE ID = " + searchValue;
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery(sql);
