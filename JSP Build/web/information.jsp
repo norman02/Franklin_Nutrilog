@@ -21,9 +21,9 @@
                                                             <th>Weight</th>
 							</tr>
                                                         <tr>
-                                                            <td>${lastFed.eventDate}</td>
+                                                            <td>${lastFed.eventDate} - ${lastFed.eventTime}</td>
                                                             <td>${lastFed.foodAmount} ${lastFed.foodUnits}</td>
-                                                            <td>${lastChanged.eventDate}</td>
+                                                            <td>${lastChanged.eventDate} - ${lastChanged.eventTime}</td>
                                                             <td>${lastWeighed.eventDate}</td>
                                                             <td>${lastWeighed.weight}</td>
                                                         </tr>

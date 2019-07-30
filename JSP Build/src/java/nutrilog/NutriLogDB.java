@@ -144,6 +144,7 @@ public class NutriLogDB {
                 System.out.println(rs.getInt("FoodAmount"));
                 if (rs.getInt("FoodAmount") > 0) {
                     lastFed.setEventDate(rs.getDate("EventDate"));
+                    lastFed.setEventTime(rs.getString("EventTime"));
                     lastFed.setFoodAmount(rs.getInt("FoodAmount"));
                     lastFed.setFoodUnits(rs.getString("FoodUnits"));
                 }
@@ -153,6 +154,7 @@ public class NutriLogDB {
             while(rs.next()) {
                 if (rs.getBoolean("Urine") || rs.getBoolean("Stool"))
                     lastChanged.setEventDate(rs.getDate("EventDate"));
+                    lastChanged.setEventTime(rs.getString("EventTime"));
             }
             dataSet.add(lastChanged);
             rs = ps.executeQuery(sql);

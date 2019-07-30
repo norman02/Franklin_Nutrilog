@@ -135,12 +135,16 @@ public class DatabaseController extends HttpServlet {
         }
         event.setEventDate(date);
         event.setEventTime(request.getParameter("time"));
+        int lbs = 0;
+        int ozs = 0;
         try {
-            int lbs = Integer.parseInt(request.getParameter("pounds"));
-            int ozs = Integer.parseInt(request.getParameter("ounces"));
-            event.setWeight(lbs, ozs);
+            lbs = Integer.parseInt(request.getParameter("pounds"));
+            ozs = Integer.parseInt(request.getParameter("ounces"));
         }
         catch (Exception e){
+        }
+        finally {
+            event.setWeight(lbs, ozs);
         }
         NutriLogDB.addEvent(event);
         return "/event.jsp";
